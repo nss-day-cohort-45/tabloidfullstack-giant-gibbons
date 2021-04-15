@@ -22,6 +22,31 @@ namespace Tabloid.Controllers
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         [HttpPost]
         public IActionResult Post(Post post)
         {
