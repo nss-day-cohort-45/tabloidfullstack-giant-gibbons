@@ -11,7 +11,7 @@ namespace Tabloid.Repositories
     public class PostRepository : BaseRepository, IPostRepository
     {
         public PostRepository(IConfiguration configuration) : base(configuration) { }
-        public PostRepository(IConfiguration config) : base(config) { }
+        
 
         public List<Post> GetAllPosts()
         {
@@ -62,7 +62,6 @@ namespace Tabloid.Repositories
             }
         }
  
-    }
 
 
 
@@ -229,8 +228,9 @@ namespace Tabloid.Repositories
         }
 
     }
+    
 }
 
 
 
-}
+
