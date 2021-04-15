@@ -16,6 +16,7 @@ namespace Tabloid.Controllers
         private readonly IPostRepository _postRepository;
 
         public PostController (IPostRepository postRepository)
+        public PostController(IPostRepository postRepository)
         {
             _postRepository = postRepository;
         }
@@ -71,9 +72,12 @@ namespace Tabloid.Controllers
 
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
+        [HttpGet]
+        public IActionResult Get()
         {
             _postRepository.Delete(id);
             return NoContent();
+            return Ok(_postRepository.GetAllPosts());
         }
 
     }
