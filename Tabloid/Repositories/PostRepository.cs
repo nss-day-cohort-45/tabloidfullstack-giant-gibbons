@@ -153,28 +153,6 @@ namespace Tabloid.Repositories
                     DbUtils.AddParameter(cmd, "@categoryId", post.CategoryId);
                     DbUtils.AddParameter(cmd, "@userProfileId", post.UserProfileId);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                     post.Id = (int)cmd.ExecuteScalar();
 
                 }
