@@ -26,13 +26,13 @@ export default function ApplicationViews() {
           <Register />
         </Route>
 
-        <Route path="/post">
+        <Route path="/post" exact>
           <PostProvider>
             <PostList />
           </PostProvider>
         </Route>
 
-        <Route path="/post/:id">
+        <Route path="/post/:id(\d+)" exact>
           <PostProvider>
             <PostDetails />
           </PostProvider>
