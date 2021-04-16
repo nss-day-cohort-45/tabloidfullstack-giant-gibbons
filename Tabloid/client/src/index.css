@@ -16,3 +16,8 @@ p {
 .post p {
     white-space: pre-wrap;
 }
+
+.nav-items {
+  display: flex;
+  flex-direction: row;
+}
