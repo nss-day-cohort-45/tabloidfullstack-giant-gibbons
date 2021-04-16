@@ -18,14 +18,13 @@ export const PostDetails = () => {
         <div>
             <Card className="m-4">
                 <p className="text-left px-2">Posted by: {post.userProfile.displayName}</p>
-                <h1>I'm here</h1>
                 <CardImg top src={post.imageLocation} alt={post.title} />
                 <CardBody>
                     <p>
                         <strong>{post.title}</strong>
                     </p>
                     <p>{post.content}</p>
-                    <p>{post.publishDateTime}</p>
+                    <p>{new Date(post.publishDateTime).toLocaleDateString()}</p>
                 </CardBody>
             </Card>
         </div>
