@@ -70,11 +70,11 @@ namespace Tabloid.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                        SELECT p.Id, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.CategoryId,
+                                        SELECT p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.ImageLocation, p.PublishDateTime, p.CategoryId, p.UserProfileId,
                                         up.Id as UserProfileId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.UserTypeId
                                        FROM Post p 
                                         LEFT JOIN UserProfile up on p.UserProfileId = up.Id
-                                        WHERE Id = @Id";
+                                        WHERE p.Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@Id", id);
 
@@ -90,8 +90,7 @@ namespace Tabloid.Repositories
                             CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             PublishDateTime = DbUtils.GetDateTime(reader, "PublishDateTime"),
                             ImageLocation = DbUtils.IsDbNull(reader, "ImageLocation") ? null :
-                                reader.GetString(reader.GetOrdinal("ImageLocation")),
-                            IsApproved = reader.GetBoolean(reader.GetOrdinal("IsApproved")),
+                                DbUtils.GetString(reader,"ImageLocation"),
                             CategoryId = DbUtils.GetInt(reader, "CategoryId"),
                             UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                             userProfile = new UserProfile()
