@@ -4,6 +4,8 @@ import { UserProfileContext } from "../providers/UserProfileProvider";
 import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
+import PostProvider from "../providers/PostProvider";
+import PostList from "./PostList";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -22,6 +24,14 @@ export default function ApplicationViews() {
         <Route path="/register">
           <Register />
         </Route>
+
+        <Route path="/post">
+          <PostProvider>
+            <PostList />
+          </PostProvider>
+        </Route>
+
+
       </Switch>
     </main>
   );
