@@ -1,5 +1,6 @@
 import React from "react";
 import { Card, CardImg, CardBody } from "reactstrap";
+import { Link } from "react-router-dom";
 
 export const Post = ({ post }) => {
     return (
@@ -8,7 +9,9 @@ export const Post = ({ post }) => {
             <CardImg top src={post.imageLocation} alt={post.title} />
             <CardBody>
                 <p>
-                    <strong>{post.title}</strong>
+                    <Link to={`/post/${post.id}`}>
+                        <strong>{post.title}</strong>
+                    </Link>
                 </p>
                 <p>{post.content}</p>
             </CardBody>
