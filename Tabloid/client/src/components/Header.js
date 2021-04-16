@@ -23,13 +23,18 @@ export default function Header() {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            { /* When isLoggedIn === true, we will render the Home link */}
+            { /* When isLoggedIn === true, we will render the Home and Post links */}
             {isLoggedIn &&
               <NavItem className="nav-items">
                 <NavLink tag={RRNavLink} to="/">Home</NavLink>
                 <NavLink tag={RRNavLink} to="/post">Posts</NavLink>
               </NavItem>
             }
+            {/* {(sessionStorage.getItem("userProfile")).UserTypeId == 1 &&
+              <NavItem className="nav-items">
+                <NavLink tag={RRNavLink} to="/TagManagement">Tag Management</NavLink>
+              </NavItem>
+            } */}
           </Nav>
           <Nav navbar>
             {isLoggedIn &&
@@ -53,6 +58,6 @@ export default function Header() {
           </Nav>
         </Collapse>
       </Navbar>
-    </div>
+    </div >
   );
 }
