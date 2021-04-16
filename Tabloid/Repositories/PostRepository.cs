@@ -61,6 +61,55 @@ namespace Tabloid.Repositories
                 }
             }
         }
+
+        public Post GetById (int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        SELECT p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.ImageLocation, p.PublishDateTime, p.CategoryId, p.UserProfileId,
+                                        up.Id as UserProfileId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.UserTypeId
+                                       FROM Post p 
+                                        LEFT JOIN UserProfile up on p.UserProfileId = up.Id
+                                        WHERE p.Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    var reader = cmd.ExecuteReader();
+                    Post post = null;
+                    while (reader.Read())
+                    {
+                        post = new Post()
+                        {
+                            Id = id,
+                            Title = DbUtils.GetString(reader, "Title"),
+                            Content = DbUtils.GetString(reader, "Content"),
+                            CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
+                            PublishDateTime = DbUtils.GetDateTime(reader, "PublishDateTime"),
+                            ImageLocation = DbUtils.IsDbNull(reader, "ImageLocation") ? null :
+                                DbUtils.GetString(reader,"ImageLocation"),
+                            CategoryId = DbUtils.GetInt(reader, "CategoryId"),
+                            UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
+                            userProfile = new UserProfile()
+                            {
+                                Id = DbUtils.GetInt(reader, "UserProfileId"),
+                                DisplayName = DbUtils.GetString(reader, "DisplayName"),
+                                FirstName = DbUtils.GetString(reader, "FirstName"),
+                                LastName = DbUtils.GetString(reader, "LastName"),
+                                Email = DbUtils.GetString(reader, "Email"),
+                                UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
+
+                            },
+                        };
+                    }
+                    reader.Close();
+                    return post;
+                }
+            }
+        }
  
 
 
