@@ -37,6 +37,9 @@ namespace Tabloid.Controllers
         {
             DateTime dateCreated = DateTime.Now;
             post.CreateDateTime = dateCreated;
+            post.IsApproved = true;
+            string firebaseUserProfileId = GetCurrentFirebaseUserProfileId();
+            post.FirebaseUserId = firebaseUserProfileId;
             _postRepository.Add(post);
             return CreatedAtAction("Get", new { id = post.Id }, post);
         }
