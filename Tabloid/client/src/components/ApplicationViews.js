@@ -6,6 +6,7 @@ import Register from "./Register";
 import Hello from "./Hello";
 import PostProvider from "../providers/PostProvider";
 import PostList from "./PostList";
+import MyPostList from "./MyPostList";
 import PostDetails from "./PostDetails";
 
 export default function ApplicationViews() {
@@ -14,6 +15,7 @@ export default function ApplicationViews() {
   return (
     <main>
       <Switch>
+
         <Route path="/" exact>
           {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
         </Route>
@@ -32,12 +34,18 @@ export default function ApplicationViews() {
           </PostProvider>
         </Route>
 
+
+        <Route path="/myPosts">
+          <PostProvider>
+            <MyPostList />
+          </PostProvider>
+        </Route>
+
         <Route path="/post/:id(\d+)" exact>
           <PostProvider>
             <PostDetails />
           </PostProvider>
         </Route>
-
 
       </Switch>
     </main>
