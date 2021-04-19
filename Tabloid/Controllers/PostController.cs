@@ -61,6 +61,7 @@ namespace Tabloid.Controllers
             return NoContent();
         }
 
+
         [HttpGet("MyPosts")]
         public IActionResult MyPosts()
         {
@@ -72,11 +73,25 @@ namespace Tabloid.Controllers
         private string GetCurrentUserProfileId()
         {
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            
+
             return id;
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var post = _postRepository.GetById(id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            return Ok(post);
+
         }
     }
 }
+
+   
 
 
 

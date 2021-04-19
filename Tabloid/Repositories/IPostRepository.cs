@@ -11,5 +11,6 @@ namespace Tabloid.Repositories
         void Update(Post post);
         List<Post> GetPostsByUserProfileId(int userProfileId);
         List<Post> GetPostsByFirebaseUserId(string firebaseUserId);
+        Post GetById(int id);
     }
 }
