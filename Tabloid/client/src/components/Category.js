@@ -13,4 +13,4 @@ export const Category = ({ category }) => {
     );
 };
 
-export default Post;
+export default Category;

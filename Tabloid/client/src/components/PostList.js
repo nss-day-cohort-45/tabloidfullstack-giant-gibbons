@@ -1,4 +1,4 @@
-import React, { userContext, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { PostContext } from '../providers/PostProvider';
 import { Post } from './Post';
 
@@ -21,3 +21,5 @@ export const PostList = () => {
         </div>
     );
 };
+
+export default PostList;

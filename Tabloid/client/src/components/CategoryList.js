@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { CategoryContext } from '../providers/CategoryProvider';
 import { Category } from './Category';
 
@@ -21,3 +21,5 @@ export const CategoryList = () => {
         </div>
     );
 };
+
+export default CategoryList;
