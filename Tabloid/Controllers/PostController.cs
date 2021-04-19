@@ -32,6 +32,8 @@ namespace Tabloid.Controllers
         [HttpPost]
         public IActionResult Post(Post post)
         {
+            DateTime dateCreated = DateTime.Now;
+            post.CreateDateTime = dateCreated;
             _postRepository.Add(post);
             return CreatedAtAction("Get", new { id = post.Id }, post);
         }
