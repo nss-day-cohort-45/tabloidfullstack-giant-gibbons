@@ -64,12 +64,20 @@ const PostForm = () => {
                                 />
                             </FormGroup>
                             <FormGroup>
-                                <Label for="content">Content</Label>
+                                <Label for="categoryId">Category</Label>
                                 <Input
-                                    id="content"
-                                    onChange={(e) => setContent(e.target.value)}
+                                    id="categoryId"
+                                    onChange={(e) => setCategoryId(e.target.value)}
                                 />
                             </FormGroup>
+                            <FormGroup>
+                                <Label for="publishDateTime">Publication Date</Label>
+                                <Input
+                                    id="publishDateTime"
+                                    onChange={(e) => setPublishDateTime(e.target.value)}
+                                />
+                            </FormGroup>
+
 
                         </Form>
                         <Button color="info" onClick={submit}>
