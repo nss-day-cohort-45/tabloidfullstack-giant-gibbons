@@ -17,6 +17,7 @@ namespace Tabloid.Models
         public bool IsApproved { get; set; }
         public int CategoryId { get; set; }
         public int UserProfileId { get; set; }
+        public string FirebaseUserId { get; set; }
 
         //public Category category { get; set; }
         public UserProfile userProfile { get; set; }
