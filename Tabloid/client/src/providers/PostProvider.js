@@ -3,7 +3,8 @@ import React, { useState } from "react";
 export const PostContext = React.createContext();
 
 export const PostProvider = (props) => {
-    const [posts, setPosts] = useState();
+    const [posts, setPosts] = useState([]);
+    const [post, setPost] = useState({});
     const [searchTerms, setSearchTerms] = useState("");
 
     const getAllPosts = () => {
@@ -20,7 +21,9 @@ export const PostProvider = (props) => {
     };
 
     const getPost = (id) => {
-        return fetch(`/api/post/GetPostWithComments/${id}`).then((res) => res.json());
+        return fetch(`/api/post/${id}`)
+            .then((res) => res.json())
+
     };
 
     const addPost = (post) => {
@@ -42,7 +45,7 @@ export const PostProvider = (props) => {
 
 
     return (
-        <PostContext.Provider value={{ posts, getAllPosts, addPost, searchPosts, setSearchTerms, searchTerms, getPostsWithComments, getPost }}>
+        <PostContext.Provider value={{ posts, getAllPosts, post, getPost, addPost, searchPosts, setSearchTerms, searchTerms, getPostsWithComments, getPost }}>
             {props.children}
         </PostContext.Provider>
     );
