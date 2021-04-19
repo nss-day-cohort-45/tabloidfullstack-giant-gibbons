@@ -49,6 +49,7 @@ export const PostProvider = (props) => {
             .then(setPosts);
     };
 
+    // fetching filtered posts belonging to the current user
     const getMyPosts = () => {
         return getToken().then((token) =>
             fetch("/api/post/MyPosts", {

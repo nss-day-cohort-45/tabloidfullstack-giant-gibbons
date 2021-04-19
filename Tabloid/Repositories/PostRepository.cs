@@ -339,6 +339,8 @@ namespace Tabloid.Repositories
             }
         }
 
+
+        // FirebaseUserId is coming from current user Id in session storage
         public List<Post> GetPostsByFirebaseUserId(string firebaseUserId)
         {
             using (var conn = Connection)
@@ -346,6 +348,7 @@ namespace Tabloid.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
+                    // getting all variables associated with the current user's Id
                     cmd.CommandText = @"
                                         SELECT u.Id AS UserProfileId, u.FirebaseUserId, u.DisplayName,
 
@@ -355,6 +358,7 @@ namespace Tabloid.Repositories
                                         WHERE u.FirebaseUserId = @firebaseUserId
                                         ORDER BY Post.CreateDateTime DESC";
 
+                    // setting sql variable to value of the parameter being passed into the method
                     cmd.Parameters.AddWithValue("@firebaseUserId", firebaseUserId);
 
                     var reader = cmd.ExecuteReader();

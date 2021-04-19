@@ -61,19 +61,19 @@ namespace Tabloid.Controllers
             return NoContent();
         }
 
-
+        // passing firebaseUserId into GetPostsByFirebaseUserId and filtering all posts to get only the current user's posts
         [HttpGet("MyPosts")]
         public IActionResult MyPosts()
         {
-            string firebaseUserProfileId = GetCurrentUserProfileId();
+            string firebaseUserProfileId = GetCurrentFirebaseUserProfileId();
             var posts = _postRepository.GetPostsByFirebaseUserId(firebaseUserProfileId);
             return Ok(posts);
         }
 
-        private string GetCurrentUserProfileId()
+        // retrieves firebaseUserId which is then used in MyPosts()
+        private string GetCurrentFirebaseUserProfileId()
         {
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
             return id;
         }
 
