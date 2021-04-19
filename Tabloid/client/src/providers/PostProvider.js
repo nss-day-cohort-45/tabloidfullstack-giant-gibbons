@@ -1,16 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { UserProfileContext } from "./UserProfileProvider";
 
 export const PostContext = React.createContext();
 
 export const PostProvider = (props) => {
+    const { getToken } = useContext(UserProfileContext);
     const [posts, setPosts] = useState([]);
     const [searchTerms, setSearchTerms] = useState("");
 
     const getAllPosts = () => {
         //the proxy that was set up in package.json will be handling the first part of the URL
-        return fetch("/api/post")
-            .then((res) => res.json())
-            .then(setPosts);
+        return getToken().then((token) =>
+            fetch("/api/post", {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((res) => res.json()))
+            .then(setPosts)
     };
 
     const getPostsWithComments = () => {
@@ -39,10 +46,21 @@ export const PostProvider = (props) => {
             .then(setPosts);
     };
 
+    const getMyPosts = () => {
+        return getToken().then((token) =>
+            fetch("/api/post/MyPosts", {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then(resp => resp.json()))
+            .then(setPosts)
+    }
+
 
 
     return (
-        <PostContext.Provider value={{ posts, getAllPosts, addPost, searchPosts, setSearchTerms, searchTerms, getPostsWithComments, getPost }}>
+        <PostContext.Provider value={{ posts, getAllPosts, addPost, searchPosts, setSearchTerms, searchTerms, getPostsWithComments, getPost, getMyPosts }}>
             {props.children}
         </PostContext.Provider>
     );

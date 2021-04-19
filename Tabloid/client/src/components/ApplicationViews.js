@@ -6,6 +6,7 @@ import Register from "./Register";
 import Hello from "./Hello";
 import PostProvider from "../providers/PostProvider";
 import PostList from "./PostList";
+import MyPostList from "./MyPostList";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -28,6 +29,12 @@ export default function ApplicationViews() {
         <Route path="/post">
           <PostProvider>
             <PostList />
+          </PostProvider>
+        </Route>
+
+        <Route path="/myPosts">
+          <PostProvider>
+            <MyPostList />
           </PostProvider>
         </Route>
 
