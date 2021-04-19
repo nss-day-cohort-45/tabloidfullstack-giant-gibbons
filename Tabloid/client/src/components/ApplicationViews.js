@@ -8,6 +8,9 @@ import PostProvider from "../providers/PostProvider";
 import PostList from "./PostList";
 import MyPostList from "./MyPostList";
 import PostDetails from "./PostDetails";
+import CategoryList from "./CategoryList";
+import CategoryProvider from "../providers/CategoryProvider"
+
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -34,11 +37,6 @@ export default function ApplicationViews() {
           </PostProvider>
         </Route>
 
-        <Route path="/category">
-          <CategoryProvider>
-            <CategoryList />
-          </CategoryProvider>
-        </Route>
 
         <Route path="/myPosts">
           <PostProvider>
@@ -50,6 +48,12 @@ export default function ApplicationViews() {
           <PostProvider>
             <PostDetails />
           </PostProvider>
+        </Route>
+
+        <Route path="/category">
+          <CategoryProvider>
+            <CategoryList />
+          </CategoryProvider>
         </Route>
 
       </Switch>
