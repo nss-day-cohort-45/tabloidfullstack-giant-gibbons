@@ -12,5 +12,6 @@ import { PostContext } from "../providers/PostProvider";
 import { useHistory } from "react-router-dom";
 
 const PostForm = () => {
+    const { addPost } = useContext(PostContext);
 
 }
