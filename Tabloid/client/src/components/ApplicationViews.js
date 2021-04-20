@@ -57,7 +57,7 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </Route>
 
-        <Route path="/post/new" exact>
+        <Route path="/post/add" exact>
           <PostProvider>
             <PostForm />
           </PostProvider>

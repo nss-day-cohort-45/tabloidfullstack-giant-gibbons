@@ -34,13 +34,16 @@ export const PostProvider = (props) => {
     };
 
     const addPost = (post) => {
-        return fetch("/api/post", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(post),
-        });
+        return getToken().then((token) =>
+            fetch("/api/post", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+
+                },
+                body: JSON.stringify(post),
+            }));
     };
 
     const searchPosts = (searchTerms) => {

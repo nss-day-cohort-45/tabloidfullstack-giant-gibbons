@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
     Form,
     FormGroup,
@@ -9,12 +9,13 @@ import {
     Button,
 } from "reactstrap";
 import { PostContext } from "../providers/PostProvider";
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import { CategoryContext } from "../providers/CategoryProvider";
 
 import { useHistory } from "react-router-dom";
 
 export const PostForm = () => {
     const { addPost } = useContext(PostContext);
+    const { getCategories, cateories, setCategories } = useContext(CategoryContext)
 
     const userProfile = sessionStorage.getItem("userProfile");
     const [title, setTitle] = useState("");
@@ -30,7 +31,7 @@ export const PostForm = () => {
             userProfile,
             title,
             content,
-            categoryId,
+            categoryId: parseInt(post.categoryId),
             imageLocation,
             publishDateTime,
 
@@ -39,6 +40,12 @@ export const PostForm = () => {
             history.push("/post/:id(\d+)");
         });
     };
+
+    useEffect(() => {
+        getCategories();
+    }, []);
+
+
     return (
         <div className="container pt-4">
             <div className="row justify-content-center">
@@ -56,6 +63,7 @@ export const PostForm = () => {
                                 <Label for="title">Title</Label>
                                 <Input id="title" onChange={(e) => setTitle(e.target.value)} />
                             </FormGroup>
+
                             <FormGroup>
                                 <Label for="content">Content</Label>
                                 <Input
@@ -63,13 +71,20 @@ export const PostForm = () => {
                                     onChange={(e) => setContent(e.target.value)}
                                 />
                             </FormGroup>
+
                             <FormGroup>
                                 <Label for="categoryId">Category</Label>
-                                <Input
-                                    id="categoryId"
-                                    onChange={(e) => setCategoryId(e.target.value)}
-                                />
+                                <select value={categoryId} name="categoryId" id="categoryId" onChange={(e) => setCategoryId(e.target.value)}>
+                                    <option value="0">Select a Category</option>
+                                    {categories.map(c => (
+                                        <option key={c.id} value={c.id}>
+                                            {c.name}
+                                        </option>
+                                    ))}
+                                </select>
+
                             </FormGroup>
+
                             <FormGroup>
                                 <Label for="publishDateTime">Publication Date</Label>
                                 <Input
@@ -82,14 +97,11 @@ export const PostForm = () => {
                         </Form>
                         <Button color="info" onClick={submit}>
                             SAVE POST
-        </Button>
+                        </Button>
                     </CardBody>
                 </Card>
             </div>
         </div>
-
     );
-
-
 }
 export default PostForm;
