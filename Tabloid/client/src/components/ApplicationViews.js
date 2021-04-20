@@ -13,8 +13,6 @@ import CategoryProvider from "../providers/CategoryProvider";
 import CategoryForm from "../components/Category/CategoryForm";
 import TagProvider from "../providers/TagProvider";
 import TagList from "./TagList";
-import CategoryList from "./CategoryList";
-import CategoryProvider from "../providers/CategoryProvider"
 import PostForm from "./PostForm";
 
 
@@ -51,7 +49,9 @@ export default function ApplicationViews() {
 
         <Route path="/post/:id(\d+)" exact>
           <PostProvider>
+
             <PostDetails />
+
           </PostProvider>
         </Route>
 
@@ -70,7 +70,9 @@ export default function ApplicationViews() {
 
         <Route path="/post/add" exact>
           <PostProvider>
-            <PostForm />
+            <CategoryProvider>
+              <PostForm />
+            </CategoryProvider>
           </PostProvider>
         </Route>
 

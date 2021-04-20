@@ -10,22 +10,17 @@ import {
 } from "reactstrap";
 import { PostContext } from "../providers/PostProvider";
 import { CategoryContext } from "../providers/CategoryProvider";
-
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export const PostForm = () => {
     const { addPost } = useContext(PostContext);
-    //const { getAllCategories } = useContext(CategoryContext)
-
+    const { categories, getAllCategories } = useContext(CategoryContext);
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const [categories, setCategories] = useState("");
     const [categoryId, setCategoryId] = useState("");
     const [imageLocation, setImageLocation] = useState("");
 
-
     const history = useHistory();
-    const { postId } = useParams();
 
     const submit = (e) => {
         const post = {
@@ -35,16 +30,15 @@ export const PostForm = () => {
             categoryId,
             imageLocation,
 
-
         };
         addPost(post).then(() => {
             history.push("/post");
         });
     };
 
-    // useEffect(() => {
-    //     getAllCategories();
-    // }, []);
+    useEffect(() => {
+        getAllCategories();
+    }, []);
 
 
     return (
@@ -73,17 +67,17 @@ export const PostForm = () => {
                                 />
                             </FormGroup>
 
-                            <FormGroup>
+                            {/* <FormGroup>
                                 <Label for="categoryId">Category</Label>
                                 <Input
                                     id="categoryId"
                                     onChange={(e) => setCategoryId(e.target.value)}
                                 />
-                            </FormGroup>
+                            </FormGroup> */}
 
-                            {/* <FormGroup>
+                            <FormGroup>
                                 <Label for="categoryId">Category</Label>
-                                <select value={categoryId} name="categoryId" id="categoryId" onChange={(e) => setCategories(e.target.value)}>
+                                <select value={categoryId} name="categoryId" id="categoryId" onChange={(e) => setCategoryId(e.target.value)}>
                                     <option value="0">Select a Category</option>
                                     {categories.map(c => (
                                         <option key={c.id} value={c.id}>
@@ -91,8 +85,7 @@ export const PostForm = () => {
                                         </option>
                                     ))}
                                 </select>
-
-                            </FormGroup> */}
+                            </FormGroup>
 
                         </Form>
                         <Button color="info" onClick={submit}>
