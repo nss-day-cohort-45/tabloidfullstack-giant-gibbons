@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import { UserProfileContext, UserProfileProvider } from "../providers/UserProfileProvider";
 import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
@@ -14,7 +14,9 @@ import CategoryForm from "../components/Category/CategoryForm";
 import DeleteCategory from "../components/Category/DeleteCatForm"
 import TagProvider from "../providers/TagProvider";
 import TagList from "./TagList";
+import UserProfileList from "./UserProfileList";
 import PostForm from "./PostForm";
+
 
 
 export default function ApplicationViews() {
@@ -50,9 +52,7 @@ export default function ApplicationViews() {
 
         <Route path="/post/:id(\d+)" exact>
           <PostProvider>
-
             <PostDetails />
-
           </PostProvider>
         </Route>
 
@@ -67,6 +67,13 @@ export default function ApplicationViews() {
           <CategoryProvider>
             <CategoryList />
           </CategoryProvider>
+        </Route>
+
+
+        <Route path="/userProfiles" exact>
+          <UserProfileProvider>
+            <UserProfileList />
+          </UserProfileProvider>
         </Route>
 
         <Route path="/post/add" exact>

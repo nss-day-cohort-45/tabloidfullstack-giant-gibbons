@@ -330,7 +330,7 @@ namespace Tabloid.Repositories
                     cmd.CommandText = @"
                                         SELECT u.Id AS UserProfileId, u.FirebaseUserId, u.DisplayName,
 
-		                                        Post.Id AS PostId, Post.Title, Post.Content, Post.CategoryId, Post.CreateDateTime
+		                                        Post.Id AS PostId, Post.Title, Post.Content, Post.CategoryId, Post.CreateDateTime, Post.ImageLocation
                                         FROM UserProfile u
                                         JOIN Post ON Post.UserProfileId = u.id
                                         WHERE u.FirebaseUserId = @firebaseUserId
@@ -350,6 +350,7 @@ namespace Tabloid.Repositories
                             Content = DbUtils.GetString(reader, "Content"),
                             CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             CategoryId = DbUtils.GetInt(reader, "CategoryId"),
+                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                             UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                             userProfile = new UserProfile()
                             {
