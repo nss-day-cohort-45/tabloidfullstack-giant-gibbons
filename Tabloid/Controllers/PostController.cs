@@ -20,10 +20,14 @@ namespace Tabloid.Controllers
         private readonly IUserProfileRepository _userProfileRepository;
 
 
-        public PostController(IPostRepository postRepository)
+        public PostController(
+            IPostRepository postRepository,
+            IUserProfileRepository userProfileRepository)
         {
             _postRepository = postRepository;
+            _userProfileRepository = userProfileRepository;
         }
+      
 
         [HttpGet]
         public IActionResult Get()
@@ -38,6 +42,7 @@ namespace Tabloid.Controllers
         {
             DateTime dateCreated = DateTime.Now;
             post.CreateDateTime = dateCreated;
+            post.PublishDateTime = dateCreated;
             post.IsApproved = true;
 
             //string firebaseUserProfileId = GetCurrentFirebaseUserProfileId();

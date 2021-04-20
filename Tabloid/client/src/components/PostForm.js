@@ -29,12 +29,12 @@ export const PostForm = () => {
 
     const submit = (e) => {
         const post = {
-            userProfile,
+
             title,
             content,
             categoryId,
             imageLocation,
-            publishDateTime,
+
 
         };
         addPost(post).then((p) => {
@@ -94,13 +94,13 @@ export const PostForm = () => {
 
                             </FormGroup> */}
 
-                            <FormGroup>
+                            {/* <FormGroup>
                                 <Label for="publishDateTime">Publication Date</Label>
-                                <Input
+                                <input type="date"
                                     id="publishDateTime"
                                     onChange={(e) => setPublishDateTime(e.target.value)}
                                 />
-                            </FormGroup>
+                            </FormGroup> */}
 
 
                         </Form>
