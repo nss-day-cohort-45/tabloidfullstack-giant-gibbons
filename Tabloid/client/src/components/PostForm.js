@@ -15,11 +15,12 @@ import { useHistory } from "react-router-dom";
 
 export const PostForm = () => {
     const { addPost } = useContext(PostContext);
-    const { getCategories, cateories, setCategories } = useContext(CategoryContext)
+    //const { getAllCategories } = useContext(CategoryContext)
 
     const userProfile = sessionStorage.getItem("userProfile");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [categories, setCategories] = useState("");
     const [categoryId, setCategoryId] = useState("");
     const [imageLocation, setImageLocation] = useState("");
     const [publishDateTime, setPublishDateTime] = useState("");
@@ -31,7 +32,7 @@ export const PostForm = () => {
             userProfile,
             title,
             content,
-            categoryId: parseInt(post.categoryId),
+            categoryId,
             imageLocation,
             publishDateTime,
 
@@ -41,9 +42,9 @@ export const PostForm = () => {
         });
     };
 
-    useEffect(() => {
-        getCategories();
-    }, []);
+    // useEffect(() => {
+    //     getAllCategories();
+    // }, []);
 
 
     return (
@@ -74,7 +75,15 @@ export const PostForm = () => {
 
                             <FormGroup>
                                 <Label for="categoryId">Category</Label>
-                                <select value={categoryId} name="categoryId" id="categoryId" onChange={(e) => setCategoryId(e.target.value)}>
+                                <Input
+                                    id="categoryId"
+                                    onChange={(e) => setCategoryId(e.target.value)}
+                                />
+                            </FormGroup>
+
+                            {/* <FormGroup>
+                                <Label for="categoryId">Category</Label>
+                                <select value={categoryId} name="categoryId" id="categoryId" onChange={(e) => setCategories(e.target.value)}>
                                     <option value="0">Select a Category</option>
                                     {categories.map(c => (
                                         <option key={c.id} value={c.id}>
@@ -83,7 +92,7 @@ export const PostForm = () => {
                                     ))}
                                 </select>
 
-                            </FormGroup>
+                            </FormGroup> */}
 
                             <FormGroup>
                                 <Label for="publishDateTime">Publication Date</Label>

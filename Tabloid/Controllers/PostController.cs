@@ -17,6 +17,7 @@ namespace Tabloid.Controllers
     public class PostController : ControllerBase
     {
         private readonly IPostRepository _postRepository;
+        private readonly IUserProfileRepository _userProfileRepository;
 
 
         public PostController(IPostRepository postRepository)
@@ -38,8 +39,13 @@ namespace Tabloid.Controllers
             DateTime dateCreated = DateTime.Now;
             post.CreateDateTime = dateCreated;
             post.IsApproved = true;
-            string firebaseUserProfileId = GetCurrentFirebaseUserProfileId();
-            post.FirebaseUserId = firebaseUserProfileId;
+
+            //string firebaseUserProfileId = GetCurrentFirebaseUserProfileId();
+            //post.FirebaseUserId = firebaseUserProfileId;
+
+            var currentUserProfile = GetCurrentUserProfile();
+            post.UserProfileId = currentUserProfile.Id;
+
             _postRepository.Add(post);
             return CreatedAtAction("Get", new { id = post.Id }, post);
         }
@@ -92,6 +98,12 @@ namespace Tabloid.Controllers
             }
             return Ok(post);
 
+        }
+
+        private UserProfile GetCurrentUserProfile()
+        {
+            var firebaseUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return _userProfileRepository.GetByFirebaseUserId(firebaseUserId);
         }
     }
 }
