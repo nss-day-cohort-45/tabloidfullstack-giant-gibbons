@@ -10,7 +10,7 @@ export const CategoryForm = () => {
 
     const [category, setCategory] = useState({
         "id": 0,
-        "Name": ""
+        "name": ""
     })
 
     const handleClickSaveCat = (event) => {
@@ -25,7 +25,7 @@ export const CategoryForm = () => {
 
     return (
         <Form className="addCatDiv" onSubmit={handleClickSaveCat}>
-            <Label>New Category Name</Label>
+            <Label for="catInput">New Category Name</Label>
             <Input id="catInput" placeholder="Enter Category Name"></Input>
             <Button>Save</Button>
         </Form>
