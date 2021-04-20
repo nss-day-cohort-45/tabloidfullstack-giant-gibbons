@@ -8,6 +8,9 @@ import PostProvider from "../providers/PostProvider";
 import PostList from "./PostList";
 import MyPostList from "./MyPostList";
 import PostDetails from "./PostDetails";
+import CategoryList from "./Category/CategoryList";
+import CategoryProvider from "../providers/CategoryProvider";
+import CategoryForm from "../components/Category/CategoryForm";
 import TagProvider from "../providers/TagProvider";
 import TagList from "./TagList";
 import CategoryList from "./CategoryList";
@@ -40,7 +43,6 @@ export default function ApplicationViews() {
           </PostProvider>
         </Route>
 
-
         <Route path="/myPosts">
           <PostProvider>
             <MyPostList />
@@ -53,13 +55,14 @@ export default function ApplicationViews() {
           </PostProvider>
         </Route>
 
+
         <Route path="/tagManagement" exact>
           <TagProvider>
             <TagList />
           </TagProvider>
         </Route>
 
-        <Route path="/category">
+        <Route exact path="/category">
           <CategoryProvider>
             <CategoryList />
           </CategoryProvider>
@@ -69,6 +72,12 @@ export default function ApplicationViews() {
           <PostProvider>
             <PostForm />
           </PostProvider>
+        </Route>
+
+        <Route exact path="/category/create">
+          <CategoryProvider>
+            <CategoryForm />
+          </CategoryProvider>
         </Route>
 
       </Switch>
