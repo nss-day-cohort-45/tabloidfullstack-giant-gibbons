@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { CategoryContext } from '../providers/CategoryProvider';
 import { Category } from './Category';
+import { Link } from 'react-router-dom';
 
 export const CategoryList = () => {
     const { categories, getAllCategories } = useContext(CategoryContext);
@@ -9,9 +10,18 @@ export const CategoryList = () => {
         getAllCategories();
     }, []);
 
+    const handleClick = (event) => {
+
+    }
+
     return (
         <>
             <h2>Categories</h2>
+            <div className="createNewBtnDiv">
+                <button className="createNewCatBtn">
+                    <Link className="a" to={`/reviews/create/`}>Create Category</Link>
+                </button>
+            </div>
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="cards=column">
