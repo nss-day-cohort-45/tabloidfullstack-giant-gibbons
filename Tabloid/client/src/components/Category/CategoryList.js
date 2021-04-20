@@ -19,7 +19,7 @@ export const CategoryList = () => {
             <h2>Categories</h2>
             <div className="createNewBtnDiv">
                 <button className="createNewCatBtn">
-                    <Link className="a" to={`/reviews/create/`}>Create Category</Link>
+                    <Link className="a" to={`/category/create/`}>Create Category</Link>
                 </button>
             </div>
             <div className="container">
