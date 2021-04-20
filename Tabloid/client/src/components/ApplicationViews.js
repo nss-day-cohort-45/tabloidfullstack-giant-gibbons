@@ -13,12 +13,9 @@ import CategoryProvider from "../providers/CategoryProvider";
 import CategoryForm from "../components/Category/CategoryForm";
 import TagProvider from "../providers/TagProvider";
 import TagList from "./TagList";
-<<<<<<< HEAD
-import CategoryList from "./CategoryList";
-import CategoryProvider from "../providers/CategoryProvider"
 import UserProfileList from "./UserProfileList";
-=======
->>>>>>> main
+
+
 
 
 export default function ApplicationViews() {
