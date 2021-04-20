@@ -8,6 +8,8 @@ import PostProvider from "../providers/PostProvider";
 import PostList from "./PostList";
 import MyPostList from "./MyPostList";
 import PostDetails from "./PostDetails";
+import TagProvider from "../providers/TagProvider";
+import TagList from "./TagList";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -45,6 +47,12 @@ export default function ApplicationViews() {
           <PostProvider>
             <PostDetails />
           </PostProvider>
+        </Route>
+
+        <Route path="/tagManagement" exact>
+          <TagProvider>
+            <TagList />
+          </TagProvider>
         </Route>
 
       </Switch>
