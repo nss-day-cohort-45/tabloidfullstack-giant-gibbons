@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import { UserProfileContext, UserProfileProvider } from "../providers/UserProfileProvider";
 import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
@@ -10,6 +10,7 @@ import MyPostList from "./MyPostList";
 import PostDetails from "./PostDetails";
 import CategoryList from "./CategoryList";
 import CategoryProvider from "../providers/CategoryProvider"
+import UserProfileList from "./UserProfileList";
 
 
 export default function ApplicationViews() {
@@ -54,6 +55,12 @@ export default function ApplicationViews() {
           <CategoryProvider>
             <CategoryList />
           </CategoryProvider>
+        </Route>
+
+        <Route path="/userProfiles">
+          <UserProfileProvider>
+            <UserProfileList />
+          </UserProfileProvider>
         </Route>
 
       </Switch>
