@@ -1,13 +1,17 @@
 import React from "react";
-import { ListGroup, ListGroupItem } from 'reactstrap';
+import { Card, CardBody } from "reactstrap";
 
 export const Tag = ({ tag }) => {
     return (
-        <ListGroup>
-            <ListGroupItem>
-                {tag.name}
-            </ListGroupItem>
-        </ListGroup>
+        <>
+            <Card className="m-4">
+                <CardBody>
+                    <p>
+                        <strong>{tag.name}</strong>
+                    </p>
+                </CardBody>
+            </Card>
+        </>
     );
 };
 export default Tag;

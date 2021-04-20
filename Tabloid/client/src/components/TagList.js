@@ -11,16 +11,18 @@ export const TagList = () => {
     }, []);
 
     return (
-        <div className="container">
-            <div className="row justify-content-center">
-                <div className="cards=column">
-                    {tags.map((tag) => {
-
-                        return <Tag key={tag.id} tag={tag} />
-                    })}
+        <>
+            <h2>Tags</h2>
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="cards=column">
+                        {tags.map((tag) => {
+                            return <Tag key={tag.id} tag={tag} />
+                        })}
+                    </div>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 export default TagList;
