@@ -50,13 +50,13 @@ export default function ApplicationViews() {
           </PostProvider>
         </Route>
 
-        <Route path="/category">
+        <Route exact path="/category">
           <CategoryProvider>
             <CategoryList />
           </CategoryProvider>
         </Route>
 
-        <Route path="/category/create">
+        <Route exact path="/category/create">
           <CategoryProvider>
             <CategoryForm />
           </CategoryProvider>

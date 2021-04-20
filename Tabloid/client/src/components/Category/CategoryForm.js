@@ -11,6 +11,8 @@ export const CategoryForm = () => {
         "Name": ""
     })
 
+
+
     return (
         <div className="addCatDiv">
             <label>New Category Name</label>
