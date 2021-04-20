@@ -1,6 +1,10 @@
 import React, { useContext, useEffect } from "react";
-import { TagContext } from "../providers/TagProvider";
+import { TagContext } from "../../providers/TagProvider";
 import Tag from "./Tag";
+import "./Tags.css";
+import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
+
 
 export const TagList = () => {
     const { tags, getTags } = useContext(TagContext);
@@ -21,6 +25,9 @@ export const TagList = () => {
                         })}
                     </div>
                 </div>
+                <Button>
+                    <Link className="a" to={`/tag/create/`}>Create Tag</Link>
+                </Button>
             </div>
         </>
     );

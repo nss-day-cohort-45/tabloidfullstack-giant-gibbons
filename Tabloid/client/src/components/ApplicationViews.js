@@ -9,7 +9,8 @@ import PostList from "./PostList";
 import MyPostList from "./MyPostList";
 import PostDetails from "./PostDetails";
 import TagProvider from "../providers/TagProvider";
-import TagList from "./TagList";
+import TagList from "./Tags/TagList";
+import TagForm from "./Tags/TagForm.js"
 import CategoryList from "./CategoryList";
 import CategoryProvider from "../providers/CategoryProvider"
 
@@ -52,9 +53,15 @@ export default function ApplicationViews() {
           </PostProvider>
         </Route>
 
-        <Route path="/tagManagement" exact>
+        <Route path="/tag" exact>
           <TagProvider>
             <TagList />
+          </TagProvider>
+        </Route>
+
+        <Route path="/tag/create" exact>
+          <TagProvider>
+            <TagForm />
           </TagProvider>
         </Route>
 
