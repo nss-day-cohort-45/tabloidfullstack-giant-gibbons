@@ -40,7 +40,6 @@ export default function ApplicationViews() {
           </PostProvider>
         </Route>
 
-
         <Route path="/myPosts">
           <PostProvider>
             <MyPostList />
@@ -65,7 +64,8 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </Route>
 
-        <Route path="/userProfiles">
+
+        <Route path="/userProfiles" exact>
           <UserProfileProvider>
             <UserProfileList />
           </UserProfileProvider>

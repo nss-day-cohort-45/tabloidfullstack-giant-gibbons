@@ -4,7 +4,6 @@ import UserProfile from "./UserProfile";
 
 export const UserProfileList = () => {
     const { userProfiles, getAllUserProfiles } = useContext(UserProfileContext);
-    const [userProfile, setUserProfiles] = useState({});
     useEffect(() => {
         getAllUserProfiles();
     }, []);
