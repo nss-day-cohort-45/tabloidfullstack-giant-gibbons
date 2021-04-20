@@ -186,13 +186,13 @@ namespace Tabloid.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Post p.Id, p.Title, p.Content, p.ImageLocation, 
-                               p.CreateDateTime, p.PublishDateTime, p.IsApproved, 
-                               p.CategoryId, p.UserProfileId
+                        INSERT INTO Post  (Title, Content, ImageLocation, 
+                               CreateDateTime, PublishDateTime, IsApproved, 
+                               CategoryId, UserProfileId)
 
                                OUTPUT INSERTED.ID
-                        VALUES ( @title, @content, @imageLocation, @createDateTime, @publishDateTime
-                                 @isApproved, @categoryId, @userProfileId )";
+                        VALUES (@title, @content, @imageLocation, @createDateTime, @publishDateTime,
+                                 @isApproved, @categoryId, @userProfileId)";
 
                     DbUtils.AddParameter(cmd, "@title", post.Title);
                     DbUtils.AddParameter(cmd, "@content", post.Content);
@@ -330,7 +330,7 @@ namespace Tabloid.Repositories
                     cmd.CommandText = @"
                                         SELECT u.Id AS UserProfileId, u.FirebaseUserId, u.DisplayName,
 
-		                                        Post.Id AS PostId, Post.Title, Post.Content, Post.CategoryId, Post.CreateDateTime
+		                                        Post.Id AS PostId, Post.Title, Post.Content, Post.CategoryId, Post.CreateDateTime, Post.ImageLocation
                                         FROM UserProfile u
                                         JOIN Post ON Post.UserProfileId = u.id
                                         WHERE u.FirebaseUserId = @firebaseUserId
@@ -350,6 +350,7 @@ namespace Tabloid.Repositories
                             Content = DbUtils.GetString(reader, "Content"),
                             CreateDateTime = DbUtils.GetDateTime(reader, "CreateDateTime"),
                             CategoryId = DbUtils.GetInt(reader, "CategoryId"),
+                            ImageLocation = DbUtils.GetString(reader, "ImageLocation"),
                             UserProfileId = DbUtils.GetInt(reader, "UserProfileId"),
                             userProfile = new UserProfile()
                             {
