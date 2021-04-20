@@ -13,7 +13,7 @@ import { UserProfileContext } from "../providers/UserProfileProvider";
 
 import { useHistory } from "react-router-dom";
 
-const PostForm = () => {
+export const PostForm = () => {
     const { addPost } = useContext(PostContext);
 
     const userProfile = sessionStorage.getItem("userProfile");
@@ -92,3 +92,4 @@ const PostForm = () => {
 
 
 }
+export default PostForm;

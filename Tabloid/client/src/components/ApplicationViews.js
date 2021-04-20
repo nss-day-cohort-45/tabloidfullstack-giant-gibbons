@@ -10,6 +10,7 @@ import MyPostList from "./MyPostList";
 import PostDetails from "./PostDetails";
 import CategoryList from "./CategoryList";
 import CategoryProvider from "../providers/CategoryProvider"
+import PostForm from "./PostForm";
 
 
 export default function ApplicationViews() {
@@ -54,6 +55,12 @@ export default function ApplicationViews() {
           <CategoryProvider>
             <CategoryList />
           </CategoryProvider>
+        </Route>
+
+        <Route path="/post/new" exact>
+          <PostProvider>
+            <PostForm />
+          </PostProvider>
         </Route>
 
       </Switch>
