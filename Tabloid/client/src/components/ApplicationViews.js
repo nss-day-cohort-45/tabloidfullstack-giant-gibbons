@@ -8,7 +8,7 @@ import PostProvider from "../providers/PostProvider";
 import PostList from "./PostList";
 import MyPostList from "./MyPostList";
 import PostDetails from "./PostDetails";
-import CategoryList from "./CategoryList";
+import CategoryList from "./Category/CategoryList";
 import CategoryProvider from "../providers/CategoryProvider"
 
 
