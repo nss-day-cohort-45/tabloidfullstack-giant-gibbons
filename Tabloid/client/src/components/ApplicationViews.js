@@ -9,7 +9,8 @@ import PostList from "./PostList";
 import MyPostList from "./MyPostList";
 import PostDetails from "./PostDetails";
 import CategoryList from "./Category/CategoryList";
-import CategoryProvider from "../providers/CategoryProvider"
+import CategoryProvider from "../providers/CategoryProvider";
+import CategoryForm from "../components/Category/CategoryForm";
 
 
 export default function ApplicationViews() {
@@ -55,7 +56,7 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </Route>
 
-        <Route path="/category/create/:categoryId(\d+)">
+        <Route path="/category/create">
           <CategoryProvider>
             <CategoryForm />
           </CategoryProvider>

@@ -2,6 +2,8 @@ import React, { useContext, useEffect } from 'react';
 import { CategoryContext } from '../../providers/CategoryProvider';
 import { Category } from './Category';
 import { Link } from 'react-router-dom';
+import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import './category.css';
 
 export const CategoryList = () => {
     const { categories, getAllCategories } = useContext(CategoryContext);
@@ -10,17 +12,15 @@ export const CategoryList = () => {
         getAllCategories();
     }, []);
 
-    const handleClick = (event) => {
-
-    }
-
     return (
         <>
             <h2>Categories</h2>
             <div className="createNewBtnDiv">
-                <button className="createNewCatBtn">
+
+                <Button>
                     <Link className="a" to={`/category/create/`}>Create Category</Link>
-                </button>
+                </Button>
+
             </div>
             <div className="container">
                 <div className="row justify-content-center">
