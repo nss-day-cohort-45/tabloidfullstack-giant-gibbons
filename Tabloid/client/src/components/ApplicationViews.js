@@ -11,7 +11,7 @@ import PostDetails from "./PostDetails";
 import CategoryList from "./Category/CategoryList";
 import CategoryProvider from "../providers/CategoryProvider";
 import CategoryForm from "../components/Category/CategoryForm";
-import CategoryDelete, { DeleteCategory } from "../components/Category/DeleteCatForm"
+import DeleteCategory from "../components/Category/DeleteCatForm"
 import TagProvider from "../providers/TagProvider";
 import TagList from "./TagList";
 

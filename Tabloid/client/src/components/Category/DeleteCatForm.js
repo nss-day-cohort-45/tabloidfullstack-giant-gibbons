@@ -5,6 +5,9 @@ import { Button, Form, FormGroup, Label, Input } from 'reactstrap'
 
 export const DeleteCategory = () => {
 
+    return (
+        <div>These are words</div>
+    )
 }
 
 export default DeleteCategory;
