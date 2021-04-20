@@ -11,21 +11,21 @@ import {
 import { PostContext } from "../providers/PostProvider";
 import { CategoryContext } from "../providers/CategoryProvider";
 
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 export const PostForm = () => {
     const { addPost } = useContext(PostContext);
     //const { getAllCategories } = useContext(CategoryContext)
 
-    const userProfile = sessionStorage.getItem("userProfile");
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [categories, setCategories] = useState("");
     const [categoryId, setCategoryId] = useState("");
     const [imageLocation, setImageLocation] = useState("");
-    const [publishDateTime, setPublishDateTime] = useState("");
+
 
     const history = useHistory();
+    const { postId } = useParams();
 
     const submit = (e) => {
         const post = {
@@ -37,8 +37,8 @@ export const PostForm = () => {
 
 
         };
-        addPost(post).then((p) => {
-            history.push("/post/:id(\d+)");
+        addPost(post).then(() => {
+            history.push("/post");
         });
     };
 
@@ -93,15 +93,6 @@ export const PostForm = () => {
                                 </select>
 
                             </FormGroup> */}
-
-                            {/* <FormGroup>
-                                <Label for="publishDateTime">Publication Date</Label>
-                                <input type="date"
-                                    id="publishDateTime"
-                                    onChange={(e) => setPublishDateTime(e.target.value)}
-                                />
-                            </FormGroup> */}
-
 
                         </Form>
                         <Button color="info" onClick={submit}>
