@@ -30,6 +30,7 @@ export default function Header() {
                 <NavLink tag={RRNavLink} to="/">Home</NavLink>
                 <NavLink tag={RRNavLink} to="/post">Posts</NavLink>
                 <NavLink tag={RRNavLink} to="/myPosts">My Posts</NavLink>
+                <NavLink tag={RRNavLink} to="/category">Categories</NavLink>
               </NavItem>
             }
             {isLoggedIn && userProfile.userTypeId == 1 &&
