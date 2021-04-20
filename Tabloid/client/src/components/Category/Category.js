@@ -1,5 +1,8 @@
 import React from "react";
-import { Card, CardBody } from "reactstrap";
+import { Card, CardBody, Button } from "reactstrap";
+import edit from "../../images/edit.png"
+import './category.css'
+import { Link } from 'react-router-dom'
 
 /* Category is responsible for converting each piece of 
 category data into HTML and ultimately displays the name
@@ -14,6 +17,8 @@ export const Category = ({ category }) => {
                     <p>
                         <strong>{category.name}</strong>
                     </p>
+                    <Button className="b"><Link className="a" to={`/category/delete/`}>Edit</Link></Button>
+                    <Button className="b">Delete</Button>
                 </CardBody>
             </Card>
         </>
