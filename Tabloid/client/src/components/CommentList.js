@@ -1,12 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import { CommentContext } from "../providers/CommentProvider";
+import { PostContext } from "../providers/PostProvider";
 import Comment from "./Comment";
+import { useHistory, useParams } from "react-router-dom";
 
 export const CommentList = () => {
-  const { comments, getAllCommentsById } = useContext(CommentContext);
+  const { comments, GetAllCommentsByPostId } = useContext(CommentContext);
 
+  const p = useParams();
+  console.log("p", p);
   useEffect(() => {
-    getAllCommentsById();
+    GetAllCommentsByPostId(p.id);
   }, []);
 
   return (
