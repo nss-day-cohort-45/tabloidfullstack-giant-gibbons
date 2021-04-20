@@ -9,7 +9,6 @@ export const CategoryForm = () => {
     const history = useHistory();
 
     const [category, setCategory] = useState({
-        "id": 0,
         "name": ""
     })
 
@@ -17,8 +16,7 @@ export const CategoryForm = () => {
         event.preventDefault()
 
         addCategory({
-            id: category.id,
-            name: category.name
+            Name: category
         })
             .then(() => history.push(`/category`))
     }
@@ -26,8 +24,11 @@ export const CategoryForm = () => {
     return (
         <Form className="addCatDiv" onSubmit={handleClickSaveCat}>
             <Label for="catInput">New Category Name</Label>
-            <Input id="catInput" placeholder="Enter Category Name"></Input>
-            <Button>Save</Button>
+            <Input id="catInput"
+                placeholder="Enter Category Name"
+                type="text"
+                onChange={e => setCategory(e.target.value)}></Input>
+            <Button className="a">Save</Button>
         </Form>
 
     )
