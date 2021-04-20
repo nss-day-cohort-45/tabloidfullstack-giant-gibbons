@@ -14,7 +14,7 @@ import CategoryForm from "../components/Category/CategoryForm";
 import TagProvider from "../providers/TagProvider";
 import TagList from "./TagList";
 import UserProfileList from "./UserProfileList";
-
+import PostForm from "./PostForm";
 
 
 
@@ -68,10 +68,19 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </Route>
 
+
         <Route path="/userProfiles" exact>
           <UserProfileProvider>
             <UserProfileList />
           </UserProfileProvider>
+        </Route>
+
+        <Route path="/post/add" exact>
+          <PostProvider>
+            <CategoryProvider>
+              <PostForm />
+            </CategoryProvider>
+          </PostProvider>
         </Route>
 
         <Route exact path="/category/create">

@@ -186,13 +186,13 @@ namespace Tabloid.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        INSERT INTO Post p.Id, p.Title, p.Content, p.ImageLocation, 
-                               p.CreateDateTime, p.PublishDateTime, p.IsApproved, 
-                               p.CategoryId, p.UserProfileId
+                        INSERT INTO Post  (Title, Content, ImageLocation, 
+                               CreateDateTime, PublishDateTime, IsApproved, 
+                               CategoryId, UserProfileId)
 
                                OUTPUT INSERTED.ID
-                        VALUES ( @title, @content, @imageLocation, @createDateTime, @publishDateTime
-                                 @isApproved, @categoryId, @userProfileId )";
+                        VALUES (@title, @content, @imageLocation, @createDateTime, @publishDateTime,
+                                 @isApproved, @categoryId, @userProfileId)";
 
                     DbUtils.AddParameter(cmd, "@title", post.Title);
                     DbUtils.AddParameter(cmd, "@content", post.Content);
