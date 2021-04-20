@@ -11,8 +11,7 @@ import PostDetails from "./PostDetails";
 import TagProvider from "../providers/TagProvider";
 import TagList from "./TagList";
 import CategoryList from "./CategoryList";
-import CategoryProvider from "../providers/CategoryProvider"
-
+import CategoryProvider from "../providers/CategoryProvider";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -20,7 +19,6 @@ export default function ApplicationViews() {
   return (
     <main>
       <Switch>
-
         <Route path="/" exact>
           {isLoggedIn ? <Hello /> : <Redirect to="/login" />}
         </Route>
@@ -38,7 +36,6 @@ export default function ApplicationViews() {
             <PostList />
           </PostProvider>
         </Route>
-
 
         <Route path="/myPosts">
           <PostProvider>
@@ -64,7 +61,14 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </Route>
 
+        <Route path="/comment">
+          <CommentProvider>
+            <PostProvider>
+              <CommentList />
+            </PostProvider>
+          </CommentProvider>
+        </Route>
       </Switch>
     </main>
   );
-};
+}

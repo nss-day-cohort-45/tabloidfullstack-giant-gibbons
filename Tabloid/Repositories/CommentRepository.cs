@@ -9,7 +9,7 @@ using Tabloid.Utils;
 
 namespace Tabloid.Repositories
 {
-    public class CommentRepository : BaseRepository
+    public class CommentRepository : BaseRepository, ICommentRepository
     {
         public CommentRepository(IConfiguration configuration) : base(configuration) { }
 
@@ -48,7 +48,7 @@ namespace Tabloid.Repositories
                                 Id = DbUtils.GetInt(reader, "userId")
                             }
 
-                        });   
+                        });
                     }
                     reader.Close();
                     return comments;
@@ -58,5 +58,5 @@ namespace Tabloid.Repositories
         }
     }
 
-    
+
 }
