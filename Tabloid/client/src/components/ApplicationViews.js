@@ -72,7 +72,7 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </Route>
 
-        <Route exact path="/category/delete">
+        <Route exact path="/category/delete/:categoryId(\d+)">
           <CategoryProvider>
             <DeleteCategory />
           </CategoryProvider>

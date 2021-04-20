@@ -33,6 +33,7 @@ export const CategoryProvider = (props) => {
         return fetch(`/api/category/${categoryId}`, {
             method: "DELETE"
         })
+            .then(getAllCategories)
     }
 
     return (
