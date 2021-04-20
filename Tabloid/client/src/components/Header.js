@@ -15,6 +15,7 @@ export default function Header() {
   const { isLoggedIn, logout } = useContext(UserProfileContext);
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
+  const userProfile = JSON.parse(sessionStorage.getItem("userProfile"));
 
   return (
     <div>
@@ -23,12 +24,18 @@ export default function Header() {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            { /* When isLoggedIn === true, we will render the Home link */}
+            { /* When isLoggedIn === true, we will render the Home and Post links */}
             {isLoggedIn &&
               <NavItem className="nav-items">
                 <NavLink tag={RRNavLink} to="/">Home</NavLink>
                 <NavLink tag={RRNavLink} to="/post">Posts</NavLink>
                 <NavLink tag={RRNavLink} to="/myPosts">My Posts</NavLink>
+                <NavLink tag={RRNavLink} to="/category">Categories</NavLink>
+              </NavItem>
+            }
+            {isLoggedIn && userProfile.userTypeId == 1 &&
+              <NavItem className="nav-items">
+                <NavLink tag={RRNavLink} to="/tagManagement">Tag Management</NavLink>
               </NavItem>
             }
           </Nav>
@@ -54,6 +61,6 @@ export default function Header() {
           </Nav>
         </Collapse>
       </Navbar>
-    </div>
+    </div >
   );
 }
