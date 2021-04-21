@@ -36,8 +36,8 @@ export const CategoryProvider = (props) => {
             .then(getAllCategories)
     }
 
-    const editCategory = (category) => {
-        return fetch(`/api/category/edit/${category.id}`, {
+    const editCategory = (category, id) => {
+        return fetch(`/api/category/${id}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
