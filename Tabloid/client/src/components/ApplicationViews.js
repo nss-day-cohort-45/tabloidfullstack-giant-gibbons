@@ -102,6 +102,10 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </Route>
 
+        <Route exact path="/category/edit/:categoryId(\d+)">
+
+        </Route>
+
       </Switch>
     </main>
   );
