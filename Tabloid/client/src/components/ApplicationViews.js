@@ -1,6 +1,9 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import { UserProfileContext } from "../providers/UserProfileProvider";
+import {
+  UserProfileContext,
+  UserProfileProvider,
+} from "../providers/UserProfileProvider";
 import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
@@ -11,12 +14,16 @@ import PostDetails from "./PostDetails";
 import CategoryList from "./Category/CategoryList";
 import CategoryProvider from "../providers/CategoryProvider";
 import CategoryForm from "../components/Category/CategoryForm";
+import DeleteCategory from "../components/Category/DeleteCatForm";
 import TagProvider from "../providers/TagProvider";
 import TagList from "./TagList";
 import CategoryList from "./CategoryList";
 import CategoryProvider from "../providers/CategoryProvider";
 import CommentList from "./CommentList";
 import CommentProvider from "../providers/CommentProvider";
+import PostForm from "./PostForm";
+
+import UserProfileList from "./UserProfileList";
 import PostForm from "./PostForm";
 
 export default function ApplicationViews() {
@@ -74,6 +81,13 @@ export default function ApplicationViews() {
             </PostProvider>
           </CommentProvider>
         </Route>
+
+        <Route path="/userProfiles" exact>
+          <UserProfileProvider>
+            <UserProfileList />
+          </UserProfileProvider>
+        </Route>
+
         <Route path="/post/add" exact>
           <PostProvider>
             <CategoryProvider>
@@ -85,6 +99,12 @@ export default function ApplicationViews() {
         <Route exact path="/category/create">
           <CategoryProvider>
             <CategoryForm />
+          </CategoryProvider>
+        </Route>
+
+        <Route exact path="/category/delete/:categoryId(\d+)">
+          <CategoryProvider>
+            <DeleteCategory />
           </CategoryProvider>
         </Route>
       </Switch>

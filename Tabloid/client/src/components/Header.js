@@ -63,6 +63,12 @@ export default function Header() {
                 <NavLink tag={RRNavLink} to="/tagManagement">
                   Tag Management
                 </NavLink>
+                <NavLink tag={RRNavLink} to="/userProfiles">
+                  User Profiles
+                </NavLink>
+                <NavLink tag={RRNavLink} to="/tagManagement">
+                  Tag Management
+                </NavLink>
               </NavItem>
             )}
             {isLoggedIn && userProfile.userTypeId == 1 && (
