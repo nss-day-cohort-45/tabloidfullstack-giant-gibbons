@@ -8,12 +8,16 @@ import PostProvider from "../providers/PostProvider";
 import PostList from "./PostList";
 import MyPostList from "./MyPostList";
 import PostDetails from "./PostDetails";
+import CategoryList from "./Category/CategoryList";
+import CategoryProvider from "../providers/CategoryProvider";
+import CategoryForm from "../components/Category/CategoryForm";
 import TagProvider from "../providers/TagProvider";
 import TagList from "./TagList";
 import CategoryList from "./CategoryList";
 import CategoryProvider from "../providers/CategoryProvider";
 import CommentList from "./CommentList";
 import CommentProvider from "../providers/CommentProvider";
+import PostForm from "./PostForm";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -57,7 +61,7 @@ export default function ApplicationViews() {
           </TagProvider>
         </Route>
 
-        <Route path="/category">
+        <Route exact path="/category">
           <CategoryProvider>
             <CategoryList />
           </CategoryProvider>
@@ -69,6 +73,19 @@ export default function ApplicationViews() {
               <CommentList />
             </PostProvider>
           </CommentProvider>
+        </Route>
+        <Route path="/post/add" exact>
+          <PostProvider>
+            <CategoryProvider>
+              <PostForm />
+            </CategoryProvider>
+          </PostProvider>
+        </Route>
+
+        <Route exact path="/category/create">
+          <CategoryProvider>
+            <CategoryForm />
+          </CategoryProvider>
         </Route>
       </Switch>
     </main>
