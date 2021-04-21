@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import { UserProfileContext } from "../providers/UserProfileProvider";
-import UserProfile from "./Users/UserProfile";
+import { UserProfileContext } from "../../providers/UserProfileProvider";
+import UserProfile from "./UserProfile";
 
 export const UserProfileList = () => {
     const { userProfiles, getAllUserProfiles } = useContext(UserProfileContext);
