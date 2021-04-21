@@ -1,22 +1,22 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { UserProfileContext, UserProfileProvider } from "../providers/UserProfileProvider";
-import Login from "./Login";
-import Register from "./Register";
+import Login from "./Login/Login"
+import Register from "./Login/Register"
 import Hello from "./Hello";
 import PostProvider from "../providers/PostProvider";
-import PostList from "./PostList";
-import MyPostList from "./MyPostList";
-import PostDetails from "./PostDetails";
+import PostList from "./Posts/PostList"
+import MyPostList from "./Posts/MyPostList";
+import PostDetails from "./Posts/PostDetails";
 import CategoryList from "./Category/CategoryList";
 import CategoryProvider from "../providers/CategoryProvider";
-import CategoryForm from "../components/Category/CategoryForm";
-import DeleteCategory from "../components/Category/DeleteCatForm"
+import CategoryForm from "./Category/CategoryForm";
+import DeleteCategory from "./Category/DeleteCatForm"
 import TagProvider from "../providers/TagProvider";
 import TagList from "./Tags/TagList";
 import TagForm from "./Tags/TagForm.js"
-import UserProfileList from "./UserProfileList";
-import PostForm from "./PostForm";
+import UserProfileList from "./Users/UserProfileList";
+import PostForm from "./Posts/PostForm";
 
 
 
