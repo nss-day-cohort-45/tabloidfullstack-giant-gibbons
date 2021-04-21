@@ -26,7 +26,8 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT c.Id, c.Name
-                                        FROM Category c 
+                                        FROM Category c
+                                        WHERE c.isDeleted = 0
                                         ORDER BY c.Name ASC;";
 
                     var reader = cmd.ExecuteReader();
@@ -103,8 +104,13 @@ namespace Tabloid.Repositories
                 conn.Open();
                 using (var cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = "DELETE FROM Category WHERE Id = @Id";
+                    cmd.CommandText = @"
+                        UPDATE Category
+                            SET IsDeleted = 1
+                            WHERE id = @id;";
+
                     DbUtils.AddParameter(cmd, "@id", id);
+
                     cmd.ExecuteNonQuery();
                 }
             }
