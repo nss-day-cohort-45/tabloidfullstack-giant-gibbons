@@ -13,7 +13,8 @@ import CategoryProvider from "../providers/CategoryProvider";
 import CategoryForm from "../components/Category/CategoryForm";
 import DeleteCategory from "../components/Category/DeleteCatForm"
 import TagProvider from "../providers/TagProvider";
-import TagList from "./TagList";
+import TagList from "./Tags/TagList";
+import TagForm from "./Tags/TagForm.js"
 import UserProfileList from "./UserProfileList";
 import PostForm from "./PostForm";
 
@@ -56,14 +57,19 @@ export default function ApplicationViews() {
           </PostProvider>
         </Route>
 
-
-        <Route path="/tagManagement" exact>
+        <Route path="/tag" exact>
           <TagProvider>
             <TagList />
           </TagProvider>
         </Route>
 
-        <Route exact path="/category">
+        <Route path="/tag/create" exact>
+          <TagProvider>
+            <TagForm />
+          </TagProvider>
+        </Route>
+
+        <Route path="/category">
           <CategoryProvider>
             <CategoryList />
           </CategoryProvider>

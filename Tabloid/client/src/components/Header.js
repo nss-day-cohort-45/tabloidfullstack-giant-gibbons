@@ -36,8 +36,8 @@ export default function Header() {
             }
             {isLoggedIn && userProfile.userTypeId == 1 &&
               <NavItem className="nav-items">
+                <NavLink tag={RRNavLink} to="/tag">Tag Management</NavLink>
                 <NavLink tag={RRNavLink} to="/userProfiles">User Profiles</NavLink>
-                <NavLink tag={RRNavLink} to="/tagManagement">Tag Management</NavLink>
               </NavItem>
             }
           </Nav>
