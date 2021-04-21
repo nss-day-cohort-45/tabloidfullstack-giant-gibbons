@@ -5,6 +5,33 @@ import { Button, Form, Label, Input } from 'reactstrap'
 
 export const CategoryEditForm = () => {
 
+    const { editCategory } = useContext(CategoryContext)
+    const history = useHistory();
+
+    const [category, setCategory] = useState({
+        "name": ""
+    })
+
+    const handleClickSaveCat = (event) => {
+        event.preventDefault()
+
+        editCategory({
+            Name: category
+        })
+            .then(() => history.push(`/category`))
+    }
+
+    return (
+        <Form className="addCatDiv" onSubmit={handleClickSaveCat}>
+            <Label for="catInput">New Category Name</Label>
+            <Input id="catInput"
+                placeholder="Enter Category Name"
+                type="text"
+                onChange={e => setCategory(e.target.value)}></Input>
+            <Button className="a">Save</Button>
+        </Form>
+
+    )
 }
 
 export default CategoryEditForm;
