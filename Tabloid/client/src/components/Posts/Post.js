@@ -13,7 +13,7 @@ export const Post = ({ post }) => {
                         <strong>{post.title}</strong>
                     </Link>
                 </p>
-                <p>{post.content}</p>
+                <p>{post.category.name}</p>
             </CardBody>
         </Card>
     );

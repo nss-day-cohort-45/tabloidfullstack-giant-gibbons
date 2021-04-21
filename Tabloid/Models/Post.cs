@@ -19,7 +19,7 @@ namespace Tabloid.Models
         public int UserProfileId { get; set; }
         public string FirebaseUserId { get; set; }
 
-        //public Category category { get; set; }
+        public Category category { get; set; }
         public UserProfile userProfile { get; set; }
     }
 }

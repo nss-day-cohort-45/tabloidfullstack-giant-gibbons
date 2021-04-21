@@ -10,34 +10,52 @@ import {
 } from "reactstrap";
 import { PostContext } from "../../providers/PostProvider";
 import { CategoryContext } from "../../providers/CategoryProvider";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 
 export const PostForm = () => {
-    const { addPost } = useContext(PostContext);
+    const { addPost, editPost, getPost } = useContext(PostContext);
     const { categories, getAllCategories } = useContext(CategoryContext);
+    const [post, setPost] = useState("")
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [categoryId, setCategoryId] = useState("");
     const [imageLocation, setImageLocation] = useState("");
 
     const history = useHistory();
+    const { postId } = useParams();
 
     const submit = (e) => {
-        const post = {
+        e.preventDefault();
+        if (postId) {
+            editPost({
+                id: post.id,
+                title: post.title,
+                content: post.content,
+                imageLocation: post.imageLocation
+            })
+                .then(() => history.push(`/api/post/${postId}`))
+        } else {
+            addPost({
 
-            title,
-            content,
-            categoryId,
-            imageLocation,
+                title,
+                content,
+                categoryId,
+                imageLocation,
 
-        };
-        addPost(post).then(() => {
-            history.push("/post");
-        });
+            }).then(() => {
+                history.push("/post");
+            });
+        }
     };
 
     useEffect(() => {
-        getAllCategories();
+        getAllCategories()
+        if (postId) {
+            getPost(postId)
+                .then(post => {
+                    setPost(post)
+                })
+        }
     }, []);
 
 
@@ -45,7 +63,9 @@ export const PostForm = () => {
         <div className="container pt-4">
             <div className="row justify-content-center">
                 <Card className="col-sm-12 col-lg-6">
+
                     <CardBody>
+                        <h3 className="postForm__title">{postId ? <> Edit Post </> : <>New Post</>}</h3>
                         <Form>
                             <FormGroup>
                                 <Label for="imageLocation">Image URL</Label>
@@ -88,8 +108,7 @@ export const PostForm = () => {
                             </FormGroup>
 
                         </Form>
-                        <Button color="info" onClick={submit}>
-                            SAVE POST
+                        <Button color="info" onClick={submit}>{postId ? <> Save Changes </> : <>Add Post</>}
                         </Button>
                     </CardBody>
                 </Card>
