@@ -21,6 +21,9 @@ import CategoryList from "./CategoryList";
 import CategoryProvider from "../providers/CategoryProvider";
 import CommentList from "./CommentList";
 import CommentProvider from "../providers/CommentProvider";
+import TagList from "./Tags/TagList";
+import TagForm from "./Tags/TagForm.js";
+import UserProfileList from "./UserProfileList";
 import PostForm from "./PostForm";
 
 import UserProfileList from "./UserProfileList";
@@ -63,49 +66,57 @@ export default function ApplicationViews() {
         </Route>
 
         <Route path="/tagManagement" exact>
-          <TagProvider>
-            <TagList />
-          </TagProvider>
-        </Route>
+          <Route path="/tag" exact>
+            <TagProvider>
+              <TagList />
+            </TagProvider>
+          </Route>
 
-        <Route exact path="/category">
-          <CategoryProvider>
-            <CategoryList />
-          </CategoryProvider>
-        </Route>
+          <Route path="/tag/create" exact>
+            <TagProvider>
+              <TagForm />
+            </TagProvider>
+          </Route>
 
-        <Route path="/comment/:id(\d+)">
-          <CommentProvider>
-            <PostProvider>
-              <CommentList />
-            </PostProvider>
-          </CommentProvider>
-        </Route>
-
-        <Route path="/userProfiles" exact>
-          <UserProfileProvider>
-            <UserProfileList />
-          </UserProfileProvider>
-        </Route>
-
-        <Route path="/post/add" exact>
-          <PostProvider>
+          <Route path="/category">
             <CategoryProvider>
-              <PostForm />
+              <CategoryList />
             </CategoryProvider>
-          </PostProvider>
-        </Route>
+          </Route>
 
-        <Route exact path="/category/create">
-          <CategoryProvider>
-            <CategoryForm />
-          </CategoryProvider>
-        </Route>
+          <Route path="/comment/:id(\d+)">
+            <CommentProvider>
+              <PostProvider>
+                <CommentList />
+              </PostProvider>
+            </CommentProvider>
+          </Route>
 
-        <Route exact path="/category/delete/:categoryId(\d+)">
-          <CategoryProvider>
-            <DeleteCategory />
-          </CategoryProvider>
+          <Route path="/userProfiles" exact>
+            <UserProfileProvider>
+              <UserProfileList />
+            </UserProfileProvider>
+          </Route>
+
+          <Route path="/post/add" exact>
+            <PostProvider>
+              <CategoryProvider>
+                <PostForm />
+              </CategoryProvider>
+            </PostProvider>
+          </Route>
+
+          <Route exact path="/category/create">
+            <CategoryProvider>
+              <CategoryForm />
+            </CategoryProvider>
+          </Route>
+
+          <Route exact path="/category/delete/:categoryId(\d+)">
+            <CategoryProvider>
+              <DeleteCategory />
+            </CategoryProvider>
+          </Route>
         </Route>
       </Switch>
     </main>

@@ -28,8 +28,13 @@ export const PostProvider = (props) => {
     };
 
     const getPost = (id) => {
-        return fetch(`/api/post/${id}`)
-            .then((res) => res.json())
+        return getToken().then((token) =>
+            fetch(`/api/post/${id}`, {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }).then((res) => res.json()))
 
     };
 
