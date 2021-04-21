@@ -36,8 +36,21 @@ export const CategoryProvider = (props) => {
             .then(getAllCategories)
     }
 
+    const editCategory = (category) => {
+        return fetch(`/api/category/edit/${category.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(category)
+        })
+            .then(response => response.json())
+            .then(getAllCategories)
+    }
+
+
     return (
-        <CategoryContext.Provider value={{ categories, getAllCategories, setCategories, addCategory, deleteCategory }}>
+        <CategoryContext.Provider value={{ categories, getAllCategories, setCategories, addCategory, deleteCategory, editCategory }}>
             {props.children}
         </CategoryContext.Provider>
     );
