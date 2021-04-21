@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState } from "react";
-import { UserProfileContext } from "../providers/UserProfileProvider";
-import UserProfile from "./UserProfile";
+import React, { useContext, useEffect } from "react";
+import { PostContext } from "../../providers/PostProvider";
+import Post from "./Post";
 
-export const UserProfileList = () => {
-    const { userProfiles, getAllUserProfiles } = useContext(UserProfileContext);
+export const MyPostList = () => {
+    const { posts, getMyPosts } = useContext(PostContext);
+
     useEffect(() => {
-        getAllUserProfiles();
+        getMyPosts();
     }, []);
 
     // useEffect dependency array with dependencies - will run if dependency changes (state)
@@ -19,18 +20,17 @@ export const UserProfileList = () => {
     //     }
     // }, [searchTerms])
 
-
     return (
         <div className="container">
+
             <div className="row justify-content-center">
                 <div className="cards-column">
-                    {userProfiles.map((userProfile) => {
-
-                        return <UserProfile key={userProfile.id} userProfile={userProfile} />
+                    {posts.map((post) => {
+                        return <Post key={post.id} post={post} />
                     })}
                 </div>
             </div>
         </div>
     );
 };
-export default UserProfileList;
+export default MyPostList;

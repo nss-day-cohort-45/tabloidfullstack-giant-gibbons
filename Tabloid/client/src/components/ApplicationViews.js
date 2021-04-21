@@ -5,8 +5,8 @@ import Login from "./Login";
 import Register from "./Register";
 import Hello from "./Hello";
 import PostProvider from "../providers/PostProvider";
-import PostList from "./PostList";
-import MyPostList from "./MyPostList";
+import PostList from "./Posts/PostList";
+import MyPostList from "./Posts/MyPostList";
 import PostDetails from "./PostDetails";
 import CategoryList from "./Category/CategoryList";
 import CategoryProvider from "../providers/CategoryProvider";
@@ -16,7 +16,7 @@ import TagProvider from "../providers/TagProvider";
 import TagList from "./Tags/TagList";
 import TagForm from "./Tags/TagForm.js"
 import UserProfileList from "./UserProfileList";
-import PostForm from "./PostForm";
+import PostForm from "./Posts/PostForm";
 
 
 
