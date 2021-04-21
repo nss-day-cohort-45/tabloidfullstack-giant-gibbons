@@ -69,7 +69,7 @@ export default function ApplicationViews() {
           </TagProvider>
         </Route>
 
-        <Route path="/category">
+        <Route exact path="/category">
           <CategoryProvider>
             <CategoryList />
           </CategoryProvider>
