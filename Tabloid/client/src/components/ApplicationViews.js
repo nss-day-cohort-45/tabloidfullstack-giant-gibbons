@@ -17,6 +17,7 @@ import TagList from "./Tags/TagList";
 import TagForm from "./Tags/TagForm.js"
 import UserProfileList from "./UserProfileList";
 import PostForm from "./PostForm";
+import TagDelete from "./Tags/TagDelete";
 
 
 
@@ -66,6 +67,12 @@ export default function ApplicationViews() {
         <Route path="/tag/create" exact>
           <TagProvider>
             <TagForm />
+          </TagProvider>
+        </Route>
+
+        <Route path="/tag/delete/:id(\d+)" exact>
+          <TagProvider>
+            <TagDelete />
           </TagProvider>
         </Route>
 

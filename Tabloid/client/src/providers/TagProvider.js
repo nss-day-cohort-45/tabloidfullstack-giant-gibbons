@@ -22,8 +22,15 @@ export const TagProvider = (props) => {
             .then(getTags);
     }
 
+    const deleteTag = (tagId) => {
+        return fetch(`/api/tag/${tagId}`, {
+            method: "DELETE"
+        })
+            .then(getTags);
+    }
+
     return (
-        <TagContext.Provider value={{ tags, getTags, addTag }}>
+        <TagContext.Provider value={{ tags, getTags, addTag, deleteTag }}>
             {props.children}
         </TagContext.Provider>
     );
