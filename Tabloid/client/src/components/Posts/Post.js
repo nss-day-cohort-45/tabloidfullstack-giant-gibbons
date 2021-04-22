@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardImg, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
+import { Button } from "bootstrap";
 
 export const Post = ({ post }) => {
     return (
@@ -15,6 +16,7 @@ export const Post = ({ post }) => {
                 </p>
                 <p>{post.category.name}</p>
             </CardBody>
+
         </Card>
     );
 };
