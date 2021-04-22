@@ -82,7 +82,7 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"
                         UPDATE Category
-                            SET [Name] = @name,
+                            SET [Name] = @name
                             WHERE Id = @id";
 
                     DbUtils.AddParameter(cmd, "@name", category.Name);

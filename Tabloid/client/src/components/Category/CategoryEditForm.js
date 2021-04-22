@@ -10,6 +10,9 @@ export const CategoryEditForm = () => {
     const { categoryId } = useParams()
     const catId = parseInt(categoryId)
 
+    console.log("This is the catId:", catId)
+    console.log("This is the categoryId", categoryId)
+
     const [category, setCategory] = useState({
         "name": "",
         "isDeleted": false,
@@ -17,6 +20,7 @@ export const CategoryEditForm = () => {
     })
 
     useEffect(() => {
+
         getCategoryById(catId)
             .then(category => {
                 setCategory(category)
@@ -24,11 +28,12 @@ export const CategoryEditForm = () => {
     }, [])
 
     const handleClickSaveCat = () => {
+        debugger
         if (catId) {
             editCategory(
                 {
                     name: category.name,
-                    isDeleted: category.isDeleted,
+                    isDeleted: false,
                     id: catId
                 }
             ).then(() => history.push(`/category`))
@@ -39,22 +44,22 @@ export const CategoryEditForm = () => {
 
         const newCat = { ...category }
         let selectedVal = event.target.value
-        // if (event.target.id.includes("id")) {
-        //     selectedVal = parseInt(selectedVal)
-        // }
+        if (event.target.id.includes("id")) {
+            selectedVal = parseInt(selectedVal)
+        }
         newCat[event.target.id] = selectedVal
         setCategory(newCat)
     }
 
     return (
-        <Form className="addCatDiv" onSubmit={handleClickSaveCat}>
+        <Form className="addCatDiv">
             <Label htmlFor="catInput">New Category Name</Label>
-            <Input id="catInput"
+            <Input id="name"
                 placeholder="Enter Category Name"
                 type="text"
-                // value="default"
+                //value=""
                 onChange={handleInputChange}></Input>
-            <Button className="a" >Save</Button>
+            <Button className="a" onClick={handleClickSaveCat}>Save</Button>
         </Form>
 
     )
