@@ -17,7 +17,7 @@ export const Category = ({ category }) => {
                     <p>
                         <strong>{category.name}</strong>
                     </p>
-                    <Button className="b"><Link className="a" to={`/category/edit/`}>Edit</Link></Button>
+                    <Button className="b"><Link className="a" to={`/category/edit/${category.id}`}>Edit</Link></Button>
                     <Button className="b"><Link className="a" to={`/category/delete/${category.id}`}>Delete</Link></Button>
                 </CardBody>
             </Card>

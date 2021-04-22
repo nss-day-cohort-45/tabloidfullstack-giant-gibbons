@@ -82,7 +82,7 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"
                         UPDATE Category
-                            SET [Name] = @name,
+                            SET [Name] = @name
                             WHERE Id = @id";
 
                     DbUtils.AddParameter(cmd, "@name", category.Name);
@@ -94,6 +94,39 @@ namespace Tabloid.Repositories
             }
         }
 
+
+
+
+        public Category GetById(int id)
+        {
+            using (var conn = Connection)
+            {
+                conn.Open();
+                using (var cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"
+                                        SELECT [Name], isDeleted
+                                        FROM Category
+                                        WHERE Id = @Id";
+
+                    DbUtils.AddParameter(cmd, "@Id", id);
+
+                    var reader = cmd.ExecuteReader();
+                    Category category = null;
+                    while (reader.Read())
+                    {
+                        category = new Category()
+                        {
+                            Id = id,
+                            Name = DbUtils.GetString(reader, "Name"),
+                            IsDeleted = reader.GetBoolean(reader.GetOrdinal("IsDeleted"))
+                        };
+                    }
+                    reader.Close();
+                    return category;
+                }
+            }
+        }
 
 
 
