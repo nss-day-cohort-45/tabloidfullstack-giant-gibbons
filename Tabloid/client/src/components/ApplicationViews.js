@@ -16,6 +16,7 @@ import TagProvider from "../providers/TagProvider";
 import TagList from "./Tags/TagList";
 import TagForm from "./Tags/TagForm.js"
 import UserProfileList from "./Users/UserProfileList";
+import UserProfileDetails from "./Users/UserProfileDetails"
 import PostForm from "./Posts/PostForm";
 
 
@@ -79,6 +80,12 @@ export default function ApplicationViews() {
         <Route path="/userProfiles" exact>
           <UserProfileProvider>
             <UserProfileList />
+          </UserProfileProvider>
+        </Route>
+
+        <Route path="/userProfiles/:id(\d+)" exact>
+          <UserProfileProvider>
+            <UserProfileDetails />
           </UserProfileProvider>
         </Route>
 
