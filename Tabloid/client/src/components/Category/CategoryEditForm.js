@@ -17,37 +17,44 @@ export const CategoryEditForm = () => {
     })
 
     useEffect(() => {
-        console.log("looking for the catId here:", catId)
         getCategoryById(catId)
             .then(category => {
                 setCategory(category)
             })
     }, [])
 
-    const handleClickSaveCat = (event) => {
-        event.preventDefault()
-
-        editCategory({
-            Name: category.name,
-            isDeleted: category.isDeleted,
-            id: catId
-        })
-            .then(() => history.push(`/category`))
+    const handleClickSaveCat = () => {
+        if (catId) {
+            editCategory(
+                {
+                    name: category.name,
+                    isDeleted: category.isDeleted,
+                    id: catId
+                }
+            ).then(() => history.push(`/category`))
+        }
     }
 
     const handleInputChange = (event) => {
-        event.preventDefault()
 
+        const newCat = { ...category }
+        let selectedVal = event.target.value
+        // if (event.target.id.includes("id")) {
+        //     selectedVal = parseInt(selectedVal)
+        // }
+        newCat[event.target.id] = selectedVal
+        setCategory(newCat)
     }
 
     return (
         <Form className="addCatDiv" onSubmit={handleClickSaveCat}>
-            <Label for="catInput">New Category Name</Label>
+            <Label htmlFor="catInput">New Category Name</Label>
             <Input id="catInput"
                 placeholder="Enter Category Name"
                 type="text"
+                // value="default"
                 onChange={handleInputChange}></Input>
-            <Button className="a">Save</Button>
+            <Button className="a" >Save</Button>
         </Form>
 
     )
