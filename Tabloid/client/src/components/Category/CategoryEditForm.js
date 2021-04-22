@@ -10,9 +10,6 @@ export const CategoryEditForm = () => {
     const { categoryId } = useParams()
     const catId = parseInt(categoryId)
 
-    console.log("This is the catId:", catId)
-    console.log("This is the categoryId", categoryId)
-
     const [category, setCategory] = useState({
         "name": "",
         "isDeleted": false,
@@ -28,7 +25,6 @@ export const CategoryEditForm = () => {
     }, [])
 
     const handleClickSaveCat = () => {
-        debugger
         if (catId) {
             editCategory(
                 {
