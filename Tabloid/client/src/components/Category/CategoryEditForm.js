@@ -1,7 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import { CategoryContext } from "../../providers/CategoryProvider"
 import { useHistory, useParams } from 'react-router-dom';
-import { Button, Form, Label, Input } from 'reactstrap'
+import { Button, Form, Label, Input } from 'reactstrap';
+import { Link } from "react-router-dom";
+import "./category.css"
 
 export const CategoryEditForm = () => {
 
@@ -55,7 +57,8 @@ export const CategoryEditForm = () => {
                 type="text"
                 //value=""
                 onChange={handleInputChange}></Input>
-            <Button className="a" onClick={handleClickSaveCat}>Save</Button>
+            <Button className="b" onClick={handleClickSaveCat}>Save</Button>
+            <Button className="b"><Link className="a" to="/category" >Cancel</Link></Button>
         </Form>
 
     )
