@@ -12,7 +12,7 @@ export const DeleteCategory = () => {
     const history = useHistory()
 
     const handleDeleteClick = () => {
-        console.log(catId)
+
         deleteCategory(catId)
             .then(() => {
                 history.push(`/category`)
