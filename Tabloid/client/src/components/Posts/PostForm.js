@@ -7,6 +7,7 @@ import {
     Label,
     Input,
     Button,
+    textarea
 } from "reactstrap";
 import { PostContext } from "../../providers/PostProvider";
 import { CategoryContext } from "../../providers/CategoryProvider";
@@ -81,30 +82,23 @@ export const PostForm = () => {
 
                             <FormGroup>
                                 <Label for="content">Content</Label>
-                                <Input
+                                <br />
+                                <Input type="textarea" rows="10"
                                     id="content"
                                     onChange={(e) => setContent(e.target.value)}
                                 />
                             </FormGroup>
 
-                            {/* <FormGroup>
-                                <Label for="categoryId">Category</Label>
-                                <Input
-                                    id="categoryId"
-                                    onChange={(e) => setCategoryId(e.target.value)}
-                                />
-                            </FormGroup> */}
 
                             <FormGroup>
-                                <Label for="categoryId">Category</Label>
-                                <select value={categoryId} name="categoryId" id="categoryId" onChange={(e) => setCategoryId(e.target.value)}>
+                                <Input type="select" value={categoryId} name="categoryId" id="categoryId" onChange={(e) => setCategoryId(e.target.value)}>
                                     <option value="0">Select a Category</option>
                                     {categories.map(c => (
                                         <option key={c.id} value={c.id}>
                                             {c.name}
                                         </option>
                                     ))}
-                                </select>
+                                </Input>
                             </FormGroup>
 
                         </Form>

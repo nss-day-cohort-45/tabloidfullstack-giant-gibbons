@@ -102,6 +102,14 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </Route>
 
+        <Route path="/post/edit/:id(\d+)" exact>
+          <PostProvider>
+            <CategoryProvider>
+              <PostForm />
+            </CategoryProvider>
+          </PostProvider>
+        </Route>
+
       </Switch>
     </main>
   );
