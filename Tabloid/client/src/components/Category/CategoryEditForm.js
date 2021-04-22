@@ -8,7 +8,7 @@ export const CategoryEditForm = () => {
     const { getCategoryById, editCategory } = useContext(CategoryContext)
     const history = useHistory();
     const { categoryId } = useParams()
-    const catId = parseInt(categoryId.categoryId)
+    const catId = parseInt(categoryId)
 
     const [category, setCategory] = useState({
         "name": "",
@@ -17,6 +17,7 @@ export const CategoryEditForm = () => {
     })
 
     useEffect(() => {
+        console.log("looking for the catId here:", catId)
         getCategoryById(catId)
             .then(category => {
                 setCategory(category)
@@ -27,7 +28,9 @@ export const CategoryEditForm = () => {
         event.preventDefault()
 
         editCategory({
-            Name: category
+            Name: category.name,
+            isDeleted: category.isDeleted,
+            id: catId
         })
             .then(() => history.push(`/category`))
     }
