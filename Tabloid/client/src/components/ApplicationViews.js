@@ -19,7 +19,8 @@ import TagForm from "./Tags/TagForm.js"
 import UserProfileList from "./Users/UserProfileList";
 import UserProfileDetails from "./Users/UserProfileDetails"
 import PostForm from "./Posts/PostForm";
-
+import CommentProvider from "../providers/CommentProvider"
+import CommentList from "./Comment/CommentList"
 
 
 export default function ApplicationViews() {
@@ -114,6 +115,14 @@ export default function ApplicationViews() {
           <CategoryProvider>
             <CategoryEditForm />
           </CategoryProvider>
+        </Route>
+
+        <Route path="/comment/:id(\d+)">
+          <CommentProvider>
+            <PostProvider>
+              <CommentList />
+            </PostProvider>
+          </CommentProvider>
         </Route>
 
       </Switch>
