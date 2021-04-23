@@ -1,16 +1,19 @@
 import React, { useContext, useEffect } from "react";
 import { CommentContext } from "../../providers/CommentProvider";
-import { PostContext } from "../../providers/PostProvider";
 import Comment from "./Comment";
-import { useHistory, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { PostContext } from "../../providers/PostProvider"
 
 export const CommentList = () => {
     const { comments, GetAllCommentsByPostId } = useContext(CommentContext);
+    const { posts, getAllPosts } = useContext(PostContext)
 
+    console.log("Are comments an array of comments?", comments)
     const postId = useParams();
-    console.log("p", postId);
+
     useEffect(() => {
-        GetAllCommentsByPostId(postId);
+        getAllPosts()
+            .then(GetAllCommentsByPostId(postId));
     }, []);
 
     return (
@@ -18,7 +21,8 @@ export const CommentList = () => {
             <div className="row justify-content-center">
                 <div className="cards-column">
                     {comments.map((comment) => {
-                        return <Comment key={comment.id} comment={comment} />;
+                        const post = posts.find(post => post.id === comment.postId)
+                        return <Comment key={comment.id} comment={comment} post={post} />;
                     })}
                 </div>
             </div>

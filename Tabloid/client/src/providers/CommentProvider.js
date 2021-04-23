@@ -8,17 +8,19 @@ export const CommentProvider = (props) => {
   const [comments, setComments] = useState([]);
   const [comment, setComment] = useState([]);
 
-  const GetAllCommentsByPostId = (id) => {
-    console.log("post id:", id);
+  const GetAllCommentsByPostId = (postId) => {
     return getToken().then((token) =>
-      fetch(`/api/comment/${id}`, {
+      fetch(`/api/comment/${postId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }).then((res) => res.json())
     )
-      .then(setComments);
+      // .then(setComments)
+      .then(
+        console.log("in provider, these are comments:", comments)
+      )
   };
 
   return (

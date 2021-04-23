@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from 'react';
 import { CategoryContext } from '../../providers/CategoryProvider';
 import { Category } from './Category';
 import { Link } from 'react-router-dom';
-import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { Button } from 'reactstrap';
 import './category.css';
 
 export const CategoryList = () => {
