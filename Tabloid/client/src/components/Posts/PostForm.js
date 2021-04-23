@@ -24,6 +24,7 @@ export const PostForm = () => {
 
   const history = useHistory();
   const { postId } = useParams();
+  console.log(postId);
 
   const submit = (e) => {
     e.preventDefault();
