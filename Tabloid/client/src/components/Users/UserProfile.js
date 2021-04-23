@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardImg, CardBody } from "reactstrap";
+import { Card, CardImg, CardBody, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
 export const UserProfile = ({ userProfile }) => {
@@ -13,6 +13,7 @@ export const UserProfile = ({ userProfile }) => {
                     </Link>
                 </p>
                 <p>{userProfile.userType.name}</p>
+                <Button className="b"><Link className="a" to={`/userProfile/deactivate/${userProfile.id}`}>Deactivate</Link></Button>
             </CardBody>
         </Card>
     );
