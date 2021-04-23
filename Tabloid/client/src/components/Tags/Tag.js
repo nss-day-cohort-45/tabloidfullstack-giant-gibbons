@@ -13,7 +13,7 @@ export const Tag = ({ tag }) => {
                         <strong>{tag.name}</strong>
                     </p>
                     <Button>
-                        <Link className="a" to={`/tag/update/`}>Edit Tag</Link>
+                        <Link className="a" to={`/tag/edit/${tag.id}`}>Edit Tag</Link>
                     </Button>
                     <Button>
                         <Link className="a" to={`/tag/delete/${tag.id}`}>Delete Tag</Link>

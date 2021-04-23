@@ -43,6 +43,8 @@ export const TagForm = () => {
                         type="text"
                         onChange={handleControlledInputChange}></Input>
                     <Button className="a">Save</Button>
+                    <Button className="a" href="/tag/">Go Back</Button>
+
                 </Form>
             </div>
         </>

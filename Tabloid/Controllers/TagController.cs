@@ -27,6 +27,18 @@ namespace Tabloid.Controllers
             return Ok(_tagRepository.GetAllTags());
         }
 
+        // https://localhost:5001/api/tag/5
+        [HttpGet("{id}")]
+        public IActionResult Get(int id)
+        {
+            var tag = _tagRepository.GetTagById(id);
+            if (tag == null)
+            {
+                return NotFound();
+            }
+            return Ok(tag);
+        }
+
         // https://localhost:5001/api/tag
         [HttpPost]
         public IActionResult Create(Tag tag)
