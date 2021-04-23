@@ -13,7 +13,7 @@ export const CommentForm = () => {
         "content": ""
     })
 
-    const handleClickSaveCat = (event) => {
+    const handleClickSaveComment = (event) => {
         event.preventDefault()
 
         addComment({
@@ -47,7 +47,7 @@ export const CommentForm = () => {
                 type="text"
                 onChange={handleInputChange}>
             </Input>
-            <Button className="a" onClick={handleClickSaveCat}>Save</Button>
+            <Button className="a" onClick={handleClickSaveComment}>Save</Button>
         </Form>
 
     )
