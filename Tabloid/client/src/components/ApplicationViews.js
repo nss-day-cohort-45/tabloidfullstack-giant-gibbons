@@ -21,7 +21,7 @@ import TagDelete from "./Tags/TagDelete";
 import TagEdit from "./Tags/TagEdit";
 import UserProfileList from "./Users/UserProfileList";
 import UserProfileDetails from "./Users/UserProfileDetails"
-import DeletePost from "./Posts/PostDelete";
+import PostDelete from "./Posts/PostDelete";
 
 
 
@@ -129,6 +129,10 @@ export default function ApplicationViews() {
               <PostForm />
             </Route>
 
+            <Route exact path="/post/delete/:id(\d+)">
+              <PostDelete />
+            </Route>
+
           </CategoryProvider>
         </PostProvider>
 
@@ -136,12 +140,6 @@ export default function ApplicationViews() {
           <CategoryProvider>
             <CategoryEditForm />
           </CategoryProvider>
-        </Route>
-
-        <Route exact path="/post/delete/:id(\d+)">
-          <PostProvider>
-            <DeletePost />
-          </PostProvider>
         </Route>
 
       </Switch>

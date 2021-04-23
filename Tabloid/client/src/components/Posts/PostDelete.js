@@ -1,14 +1,14 @@
 import React, { useContext } from "react";
 import { PostContext } from "../../providers/PostProvider"
-import { Link, useHistory, useParams } from 'react-router-dom';
-import { Button, Form } from 'reactstrap'
+import { useHistory, useParams } from 'react-router-dom';
+import { Button } from 'reactstrap'
 
-
-export const DeletePost = () => {
+export const PostDelete = () => {
 
     const { deletePost } = useContext(PostContext)
-    const postId = useParams().id;
+    const postId = parseInt(useParams().id);
     const history = useHistory();
+    console.log("postId", postId)
 
     const handleDeleteClick = () => {
         deletePost(postId)
@@ -26,4 +26,4 @@ export const DeletePost = () => {
         </>
     )
 }
-export default DeletePost;
+export default PostDelete;

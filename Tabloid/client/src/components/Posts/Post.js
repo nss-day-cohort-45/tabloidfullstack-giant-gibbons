@@ -1,15 +1,10 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import { Card, CardImg, CardBody, Button } from "reactstrap";
 import { Link } from "react-router-dom";
-import { PostContext } from "../../providers/PostProvider";
 
 export const Post = ({ post }) => {
-  const [setPost] = useState();
-
 
   const user = JSON.parse(sessionStorage.getItem("userProfile"));
-
-  const { getPost } = useContext(PostContext);
 
   const enableButton = user.id === post.userProfileId;
 
@@ -48,6 +43,7 @@ export const Post = ({ post }) => {
         <p>{post.category.name}</p>
         <div>{enableButton ? buttonForUser() : null}</div>
         <div>{enableButton ? deleteForUser() : null}</div>
+
       </CardBody>
     </Card>
   );
