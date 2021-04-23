@@ -8,6 +8,7 @@ import PostProvider from "../providers/PostProvider";
 import PostList from "./Posts/PostList"
 import MyPostList from "./Posts/MyPostList";
 import PostDetails from "./Posts/PostDetails";
+import PostForm from "./Posts/PostForm";
 import CategoryList from "./Category/CategoryList";
 import CategoryProvider from "../providers/CategoryProvider";
 import CategoryForm from "./Category/CategoryForm";
@@ -16,11 +17,14 @@ import CategoryEditForm from "./Category/CategoryEditForm";
 import TagProvider from "../providers/TagProvider";
 import TagList from "./Tags/TagList";
 import TagForm from "./Tags/TagForm.js"
+import TagDelete from "./Tags/TagDelete";
+import TagEdit from "./Tags/TagEdit";
 import UserProfileList from "./Users/UserProfileList";
 import UserProfileDetails from "./Users/UserProfileDetails"
 import PostForm from "./Posts/PostForm";
 import CommentProvider from "../providers/CommentProvider"
 import CommentList from "./Comment/CommentList"
+
 
 
 export default function ApplicationViews() {
@@ -69,6 +73,18 @@ export default function ApplicationViews() {
         <Route path="/tag/create" exact>
           <TagProvider>
             <TagForm />
+          </TagProvider>
+        </Route>
+
+        <Route path="/tag/edit/:id(\d+)" exact>
+          <TagProvider>
+            <TagEdit />
+          </TagProvider>
+        </Route>
+
+        <Route path="/tag/delete/:id(\d+)" exact>
+          <TagProvider>
+            <TagDelete />
           </TagProvider>
         </Route>
 
