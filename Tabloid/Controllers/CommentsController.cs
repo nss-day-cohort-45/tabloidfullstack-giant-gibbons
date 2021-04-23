@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Tabloid.Models;
 using Tabloid.Repositories;
 
 namespace Tabloid.Controllers
@@ -26,6 +27,16 @@ namespace Tabloid.Controllers
         public IActionResult Get(int id)
         {
             return Ok(_commentRepository.GetAllCommentsByPostId(id));
+        }
+
+        [HttpPost]
+        public IActionResult Create(Comment comment)
+        {
+            DateTime dateCreated = DateTime.Now;
+            comment.CreateDateTime = dateCreated;
+
+            _commentRepository.Add(comment);
+            return CreatedAtAction("Get", new { id = comment.Id }, comment);
         }
     }
 }

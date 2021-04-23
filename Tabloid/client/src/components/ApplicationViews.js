@@ -142,9 +142,7 @@ export default function ApplicationViews() {
 
         <Route path="/comment/create/">
           <CommentProvider>
-
             <CommentForm />
-
           </CommentProvider>
         </Route>
 

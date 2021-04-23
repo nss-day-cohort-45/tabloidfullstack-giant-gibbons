@@ -10,7 +10,9 @@ export const CommentForm = () => {
 
     const [comment, setComment] = useState({
         "subject": "",
-        "content": ""
+        "content": "",
+        "postId": 0,
+        "userProfileId": 0
     })
 
     const handleClickSaveComment = (event) => {
@@ -18,7 +20,9 @@ export const CommentForm = () => {
 
         addComment({
             subject: comment.subject,
-            content: comment.content
+            content: comment.content,
+            postId: 10000,
+            userProfileId: 10000
         })
             .then(() => history.push(`/post`)) //This needs to be fixed
     }
