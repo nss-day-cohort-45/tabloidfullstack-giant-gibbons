@@ -11,7 +11,7 @@ export const Comment = ({ comment }) => {
 
             <CardBody>
                 <p>
-                    <Link to={`/comment/${comment.id}`}>
+                    <Link to={`/comment/${comment.postId}`}>
                         <strong>{comment.subject}</strong>
                     </Link>
                 </p>

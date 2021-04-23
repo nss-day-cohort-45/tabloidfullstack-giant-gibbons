@@ -9,16 +9,15 @@ export const CommentProvider = (props) => {
   const [comment, setComment] = useState([]);
 
   const GetAllCommentsByPostId = (id) => {
-    console.log("is there anything here?", id);
-    return getToken()
-      .then((token) =>
-        fetch(`/api/comment/${id}`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }).then((res) => res.json())
-      )
+    console.log("post id:", id);
+    return getToken().then((token) =>
+      fetch(`/api/comment/${id}`, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }).then((res) => res.json())
+    )
       .then(setComments);
   };
 

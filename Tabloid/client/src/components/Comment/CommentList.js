@@ -7,10 +7,10 @@ import { useHistory, useParams } from "react-router-dom";
 export const CommentList = () => {
     const { comments, GetAllCommentsByPostId } = useContext(CommentContext);
 
-    const p = useParams();
-    console.log("p", p);
+    const postId = useParams();
+    console.log("p", postId);
     useEffect(() => {
-        GetAllCommentsByPostId(p.id);
+        GetAllCommentsByPostId(postId);
     }, []);
 
     return (
