@@ -23,7 +23,7 @@ import UserProfileList from "./Users/UserProfileList";
 import UserProfileDetails from "./Users/UserProfileDetails"
 import CommentProvider from "../providers/CommentProvider"
 import CommentList from "./Comment/CommentList"
-
+import CommentForm from "./Comment/CommentForm"
 
 
 export default function ApplicationViews() {
@@ -137,6 +137,14 @@ export default function ApplicationViews() {
             <PostProvider>
               <CommentList />
             </PostProvider>
+          </CommentProvider>
+        </Route>
+
+        <Route path="/comment/create/">
+          <CommentProvider>
+
+            <CommentForm />
+
           </CommentProvider>
         </Route>
 

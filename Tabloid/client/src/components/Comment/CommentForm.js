@@ -20,7 +20,7 @@ export const CommentForm = () => {
             subject: comment.subject,
             content: comment.content
         })
-            .then(() => history.push(`/comment/${postId}`))
+            .then(() => history.push(`/post`)) //This needs to be fixed
     }
 
     const handleInputChange = (event) => {
@@ -54,4 +54,4 @@ export const CommentForm = () => {
 
 }
 
-export default CategoryForm;
+export default CommentForm;
