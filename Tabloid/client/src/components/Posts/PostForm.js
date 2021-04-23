@@ -7,25 +7,29 @@ import {
   Label,
   Input,
   Button,
-  textarea,
 } from "reactstrap";
 import { PostContext } from "../../providers/PostProvider";
 import { CategoryContext } from "../../providers/CategoryProvider";
 import { useHistory, useParams } from "react-router-dom";
 
 export const PostForm = () => {
+
   const { addPost, editPost, getPost } = useContext(PostContext);
   const { categories, getAllCategories } = useContext(CategoryContext);
-  const [post, setPost] = useState("");
-  const [title, setTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [categoryId, setCategoryId] = useState("");
-  const [imageLocation, setImageLocation] = useState("");
 
   const history = useHistory();
-  const { postId } = useParams();
+  const postId = parseInt(useParams().id);
 
-  const submit = (e) => {
+  const [post, setPost] = useState({
+    id: "",
+    title: "",
+    content: "",
+    imageLocation: "",
+    publishDateTime: null,
+    categoryId: 0
+  });
+
+  const savePost = (e) => {
     e.preventDefault();
     if (postId) {
       editPost({
@@ -33,18 +37,35 @@ export const PostForm = () => {
         title: post.title,
         content: post.content,
         imageLocation: post.imageLocation,
-      }).then(() => history.push(`/api/post/${postId}`));
+        publishDateTime: post.publishDateTime,
+        categoryId: parseInt(post.categoryId)
+      }).then(() => history.push(`/post/${postId}`));
+
     } else {
       addPost({
-        title,
-        content,
-        categoryId,
-        imageLocation,
+        title: post.title,
+        content: post.content,
+        categoryId: parseInt(post.categoryId),
+        publishDateTime: post.publishDateTime,
+        imageLocation: post.imageLocation,
       }).then(() => {
         history.push("/post");
       });
     }
   };
+
+
+  const handleInputChange = (event) => {
+
+    const newPost = { ...post }
+    let selectedVal = event.target.value
+    if (event.target.id.includes("id")) {
+      selectedVal = parseInt(selectedVal)
+    }
+    newPost[event.target.id] = selectedVal
+    setPost(newPost)
+  }
+
 
   useEffect(() => {
     getAllCategories();
@@ -66,10 +87,10 @@ export const PostForm = () => {
             <Form>
               <FormGroup>
                 <Label for="imageLocation">Image URL</Label>
-                <Input
+                <Input type="text"
                   id="imageLocation"
                   value={post.imageLocation}
-                  onChange={(e) => setImageLocation(e.target.value)}
+                  onChange={handleInputChange}
                 />
               </FormGroup>
               <FormGroup>
@@ -77,7 +98,7 @@ export const PostForm = () => {
                 <Input
                   id="title"
                   value={post.title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={handleInputChange}
                 />
               </FormGroup>
 
@@ -89,17 +110,17 @@ export const PostForm = () => {
                   value={post.content}
                   rows="10"
                   id="content"
-                  onChange={(e) => setContent(e.target.value)}
+                  onChange={handleInputChange}
                 />
               </FormGroup>
 
               <FormGroup>
                 <Input
                   type="select"
-                  value={categoryId}
+                  value={post.categoryId}
                   name="categoryId"
                   id="categoryId"
-                  onChange={(e) => setCategoryId(e.target.value)}
+                  onChange={handleInputChange}
                 >
                   <option value="0">Select a Category</option>
                   {categories.map((c) => (
@@ -110,7 +131,7 @@ export const PostForm = () => {
                 </Input>
               </FormGroup>
             </Form>
-            <Button color="info" onClick={submit}>
+            <Button color="info" onClick={savePost}>
               {postId ? <> Save Changes </> : <>Add Post</>}
             </Button>
           </CardBody>

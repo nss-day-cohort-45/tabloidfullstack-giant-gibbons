@@ -90,13 +90,13 @@ export default function ApplicationViews() {
           </UserProfileProvider>
         </Route>
 
-        <Route path="/post/add" exact>
+        {/* <Route path="/post/add" exact>
           <PostProvider>
             <CategoryProvider>
               <PostForm />
             </CategoryProvider>
           </PostProvider>
-        </Route>
+        </Route> */}
 
         <Route exact path="/category/create">
           <CategoryProvider>
@@ -110,13 +110,20 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </Route>
 
-        <Route path="/post/edit/:id(\d+)" exact>
-          <PostProvider>
-            <CategoryProvider>
+
+        <PostProvider>
+          <CategoryProvider>
+
+            <Route path="/post/add" exact>
               <PostForm />
-            </CategoryProvider>
-          </PostProvider>
-        </Route>
+            </Route>
+
+            <Route path="/post/edit/:id(\d+)" exact>
+              <PostForm />
+            </Route>
+
+          </CategoryProvider>
+        </PostProvider>
 
         <Route exact path="/category/edit/:categoryId(\d+)">
           <CategoryProvider>
