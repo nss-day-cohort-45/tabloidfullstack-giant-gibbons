@@ -1,20 +1,23 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
+
 import {
   UserProfileContext,
   UserProfileProvider,
 } from "../providers/UserProfileProvider";
 import Login from "./Login";
 import Register from "./Register";
+
 import Hello from "./Hello";
 import PostProvider from "../providers/PostProvider";
-import PostList from "./PostList";
-import MyPostList from "./MyPostList";
-import PostDetails from "./PostDetails";
+import PostList from "./Posts/PostList"
+import MyPostList from "./Posts/MyPostList";
+import PostDetails from "./Posts/PostDetails";
 import CategoryList from "./Category/CategoryList";
 import CategoryProvider from "../providers/CategoryProvider";
-import CategoryForm from "../components/Category/CategoryForm";
-import DeleteCategory from "../components/Category/DeleteCatForm";
+import CategoryForm from "./Category/CategoryForm";
+import DeleteCategory from "./Category/DeleteCatForm";
+import CategoryEditForm from "./Category/CategoryEditForm";
 import TagProvider from "../providers/TagProvider";
 import TagList from "./TagList";
 import CategoryList from "./CategoryList";
@@ -22,12 +25,10 @@ import CategoryProvider from "../providers/CategoryProvider";
 import CommentList from "./CommentList";
 import CommentProvider from "../providers/CommentProvider";
 import TagList from "./Tags/TagList";
-import TagForm from "./Tags/TagForm.js";
-import UserProfileList from "./UserProfileList";
-import PostForm from "./PostForm";
-
-import UserProfileList from "./UserProfileList";
-import PostForm from "./PostForm";
+import TagForm from "./Tags/TagForm.js"
+import UserProfileList from "./Users/UserProfileList";
+import UserProfileDetails from "./Users/UserProfileDetails"
+import PostForm from "./Posts/PostForm";
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -65,12 +66,26 @@ export default function ApplicationViews() {
           </PostProvider>
         </Route>
 
-        <Route path="/tagManagement" exact>
-          <Route path="/tag" exact>
-            <TagProvider>
-              <TagList />
-            </TagProvider>
-          </Route>
+
+        <Route path="/tag" exact>
+          <TagProvider>
+            <TagList />
+          </TagProvider>
+        </Route>
+
+        <Route path="/tag/create" exact>
+          <TagProvider>
+            <TagForm />
+          </TagProvider>
+        </Route>
+
+        <Route exact path="/category">
+          <CategoryProvider>
+            <CategoryList />
+          </CategoryProvider>
+        </Route>
+
+
 
           <Route path="/tag/create" exact>
             <TagProvider>
@@ -78,7 +93,16 @@ export default function ApplicationViews() {
             </TagProvider>
           </Route>
 
-          <Route path="/category">
+
+        <Route path="/userProfiles/:id(\d+)" exact>
+          <UserProfileProvider>
+            <UserProfileDetails />
+          </UserProfileProvider>
+        </Route>
+
+        <Route path="/post/add" exact>
+          <PostProvider>
+
             <CategoryProvider>
               <CategoryList />
             </CategoryProvider>
@@ -118,6 +142,13 @@ export default function ApplicationViews() {
             </CategoryProvider>
           </Route>
         </Route>
+
+        <Route exact path="/category/edit/:categoryId(\d+)">
+          <CategoryProvider>
+            <CategoryEditForm />
+          </CategoryProvider>
+        </Route>
+    
       </Switch>
     </main>
   );

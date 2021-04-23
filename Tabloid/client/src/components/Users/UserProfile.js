@@ -8,7 +8,7 @@ export const UserProfile = ({ userProfile }) => {
             <p className="text-left px-2">{userProfile.fullName}</p>
             <CardBody>
                 <p>
-                    <Link to={`/userProfile/${userProfile.id}`}>
+                    <Link to={`/userProfiles/${userProfile.id}`}>
                         <strong>{userProfile.displayName}</strong>
                     </Link>
                 </p>
