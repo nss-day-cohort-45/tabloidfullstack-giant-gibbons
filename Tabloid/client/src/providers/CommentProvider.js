@@ -17,10 +17,7 @@ export const CommentProvider = (props) => {
         },
       }).then((res) => res.json())
     )
-      // .then(setComments)
-      .then(
-        console.log("in provider, these are comments:", comments)
-      )
+      .then(setComments)
   };
 
   return (
