@@ -1,14 +1,11 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useContext, useState } from "react";
 import { Card, CardImg, CardBody, Button } from "reactstrap";
-import { Link, useHistory, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { PostContext } from "../../providers/PostProvider";
 
 export const Post = ({ post }) => {
   const [setPost] = useState();
 
-  const history = useHistory();
-
-  const { postId } = useParams();
 
   const user = JSON.parse(sessionStorage.getItem("userProfile"));
 
@@ -21,6 +18,16 @@ export const Post = ({ post }) => {
       <Button className="b">
         <Link className="a" to={`/post/edit/${post.id}`}>
           Edit
+        </Link>
+      </Button>
+    );
+  };
+
+  const deleteForUser = () => {
+    return (
+      <Button className="b">
+        <Link className="a" to={`/post/delete/${post.id}`}>
+          Delete
         </Link>
       </Button>
     );
@@ -40,6 +47,7 @@ export const Post = ({ post }) => {
         </p>
         <p>{post.category.name}</p>
         <div>{enableButton ? buttonForUser() : null}</div>
+        <div>{enableButton ? deleteForUser() : null}</div>
       </CardBody>
     </Card>
   );

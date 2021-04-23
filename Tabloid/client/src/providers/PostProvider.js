@@ -87,6 +87,19 @@ export const PostProvider = (props) => {
       )
   };
 
+  const deletePost = (id) => {
+    return getToken()
+      .then((token) =>
+        fetch(`/api/post/${id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        })
+          .then(getAllPosts)
+      )
+  };
+
   return (
     <PostContext.Provider
       value={{
@@ -102,6 +115,7 @@ export const PostProvider = (props) => {
         getMyPosts,
         setPost,
         editPost,
+        deletePost
       }}
     >
       {props.children}
