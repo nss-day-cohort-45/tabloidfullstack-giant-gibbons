@@ -12,7 +12,8 @@ import PostForm from "./Posts/PostForm";
 import CategoryList from "./Category/CategoryList";
 import CategoryProvider from "../providers/CategoryProvider";
 import CategoryForm from "./Category/CategoryForm";
-import DeleteCategory from "./Category/DeleteCatForm"
+import DeleteCategory from "./Category/DeleteCatForm";
+import CategoryEditForm from "./Category/CategoryEditForm";
 import TagProvider from "../providers/TagProvider";
 import TagList from "./Tags/TagList";
 import TagForm from "./Tags/TagForm.js"
@@ -120,6 +121,12 @@ export default function ApplicationViews() {
         <Route exact path="/category/delete/:categoryId(\d+)">
           <CategoryProvider>
             <DeleteCategory />
+          </CategoryProvider>
+        </Route>
+
+        <Route exact path="/category/edit/:categoryId(\d+)">
+          <CategoryProvider>
+            <CategoryEditForm />
           </CategoryProvider>
         </Route>
 
