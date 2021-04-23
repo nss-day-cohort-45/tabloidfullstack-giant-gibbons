@@ -43,11 +43,16 @@ export function UserProfileProvider(props) {
   };
 
   const deactivateUserProfile = (userProfileId) => {
-    return fetch(`${apiUrl}/${userProfileId}`, {
-      method: "DELETE"
-    })
-      .then(getAllUserProfiles)
-  }
+    return getToken().then((token) =>
+      fetch(`${apiUrl}/${userProfileId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(getAllUserProfiles)
+    )
+  };
 
   const login = (email, pw) => {
     return firebase.auth().signInWithEmailAndPassword(email, pw)

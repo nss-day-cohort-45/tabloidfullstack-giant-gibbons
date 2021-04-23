@@ -17,10 +17,11 @@ namespace Tabloid.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                                         SELECT up.Id as UserProfileId, up.FirebaseUserId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId AS UserProfileTypeId,
+                                         SELECT up.Id as UserProfileId, up.FirebaseUserId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.CreateDateTime, up.ImageLocation, up.UserTypeId AS UserProfileTypeId, up.IsDeleted,
                                                 ut.Id as UserTypeId, ut.Name AS UserTypeName
                                          FROM UserProfile up
                                          JOIN UserType ut on up.UserTypeId = ut.Id
+                                         WHERE up.IsDeleted = 0
                                          ORDER BY up.DisplayName";
 
                     var reader = cmd.ExecuteReader();
@@ -179,9 +180,9 @@ namespace Tabloid.Repositories
                 using (var cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"
-                        UPDATE UserProfile
-                            SET IsDeleted = 1
-                            WHERE id = @id;";
+                        UPDATE UserProfile 
+                        SET IsDeleted = 1
+                        WHERE Id = @Id";
 
                     DbUtils.AddParameter(cmd, "@id", id);
 

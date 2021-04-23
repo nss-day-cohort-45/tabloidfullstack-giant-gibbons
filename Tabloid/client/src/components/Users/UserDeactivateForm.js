@@ -12,10 +12,9 @@ export const DeactivateUserProfile = () => {
     const history = useHistory()
 
     const handleDeactivateClick = () => {
-
         deactivateUserProfile(profileId)
             .then(() => {
-                history.push(`/userProfile`)
+                history.push(`/userProfiles`)
             })
     }
 
