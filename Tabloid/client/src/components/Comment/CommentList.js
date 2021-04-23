@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import { CommentContext } from "../providers/CommentProvider";
-import { PostContext } from "../providers/PostProvider";
+import { CommentContext } from "../../providers/CommentProvider";
+import { PostContext } from "../../providers/PostProvider";
 import Comment from "./Comment";
 import { useHistory, useParams } from "react-router-dom";
 
