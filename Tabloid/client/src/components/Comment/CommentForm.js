@@ -7,13 +7,11 @@ export const CommentForm = () => {
 
     const { addComment } = useContext(CommentContext)
     const history = useHistory();
-    const postId = parseInt(useParams());
-
+    const { postId } = useParams();
 
     const [comment, setComment] = useState({
         "subject": "",
-        "content": "",
-        "postId": 0
+        "content": ""
     })
 
     const handleClickSaveComment = (event) => {
