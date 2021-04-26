@@ -26,6 +26,7 @@ import CommentList from "./Comment/CommentList"
 import CommentForm from "./Comment/CommentForm"
 import DeactivateUserProfile from "./Users/UserDeactivateForm";
 import PostDelete from "./Posts/PostDelete";
+import "./appViews.css"
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
