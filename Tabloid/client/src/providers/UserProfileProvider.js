@@ -42,6 +42,18 @@ export function UserProfileProvider(props) {
 
   };
 
+  const deactivateUserProfile = (userProfileId) => {
+    return getToken().then((token) =>
+      fetch(`${apiUrl}/${userProfileId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+        .then(getAllUserProfiles)
+    )
+  };
+
   const login = (email, pw) => {
     return firebase.auth().signInWithEmailAndPassword(email, pw)
       .then((signInResponse) => getUserProfile(signInResponse.user.uid))
@@ -92,7 +104,7 @@ export function UserProfileProvider(props) {
   };
 
   return (
-    <UserProfileContext.Provider value={{ isLoggedIn, login, logout, register, getToken, getUserProfile, getAllUserProfiles, userProfiles, setUserProfiles, getUserProfileById }}>
+    <UserProfileContext.Provider value={{ isLoggedIn, login, logout, register, getToken, getUserProfile, getAllUserProfiles, userProfiles, setUserProfiles, getUserProfileById, deactivateUserProfile }}>
       {isFirebaseReady
         ? props.children
         : <Spinner className="app-spinner dark" />}

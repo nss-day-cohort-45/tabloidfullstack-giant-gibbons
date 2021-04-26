@@ -42,6 +42,14 @@ namespace Tabloid.Controllers
             return Ok(_userProfileRepository.GetByFirebaseUserId(firebaseUserId));
         }
 
+
+        [HttpDelete("{id}")]
+        public IActionResult Deactivate(int id)
+        {
+            _userProfileRepository.Deactivate(id);
+            return NoContent();
+        }
+
         [HttpPost]
         public IActionResult Post(UserProfile userProfile)
         {
