@@ -21,10 +21,12 @@ import TagDelete from "./Tags/TagDelete";
 import TagEdit from "./Tags/TagEdit";
 import UserProfileList from "./Users/UserProfileList";
 import UserProfileDetails from "./Users/UserProfileDetails"
+import CommentProvider from "../providers/CommentProvider"
+import CommentList from "./Comment/CommentList"
+import CommentForm from "./Comment/CommentForm"
 import DeactivateUserProfile from "./Users/UserDeactivateForm";
 import PostDelete from "./Posts/PostDelete";
-
-
+import "./appViews.css"
 
 
 export default function ApplicationViews() {
@@ -60,7 +62,9 @@ export default function ApplicationViews() {
 
         <Route path="/post/:id(\d+)" exact>
           <PostProvider>
-            {isLoggedIn ? <PostDetails /> : <Redirect to="/login" />}
+            <CommentProvider>
+              {isLoggedIn ? <PostDetails /> : <Redirect to="/login" />}
+            </CommentProvider>
           </PostProvider>
         </Route>
 
@@ -126,6 +130,25 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </Route>
 
+        <Route exact path="/category/edit/:categoryId(\d+)">
+          <CategoryProvider>
+            <CategoryEditForm />
+          </CategoryProvider>
+        </Route>
+
+        <Route path="/comment/:id(\d+)">
+          <CommentProvider>
+            <PostProvider>
+              <CommentList />
+            </PostProvider>
+          </CommentProvider>
+        </Route>
+
+        <Route exact path="/comment/create/:postId(\d+)">
+          <CommentProvider>
+            <CommentForm />
+          </CommentProvider>
+        </Route>
 
         <PostProvider>
           <CategoryProvider>
@@ -145,11 +168,7 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </PostProvider>
 
-        <Route exact path="/category/edit/:categoryId(\d+)">
-          <CategoryProvider>
-            <CategoryEditForm />
-          </CategoryProvider>
-        </Route>
+
 
       </Switch>
     </main>

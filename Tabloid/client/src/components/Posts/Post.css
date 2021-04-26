@@ -7,3 +7,11 @@
 .b {
     margin-right: 1rem;
 }
+
+.addComment {
+    max-width: 25%;
+}
+
+.c {
+    display: flex;
+}

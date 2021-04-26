@@ -2,15 +2,18 @@ import React, { useEffect, useContext, useState } from "react";
 import { Card, CardImg, CardBody, Button } from "reactstrap";
 import { PostContext } from "../../providers/PostProvider";
 import { useParams, Link } from "react-router-dom";
-
+import "./Post.css";
+import { CommentContext } from "../../providers/CommentProvider";
+import { CommentList } from "../Comment/CommentList";
 
 export const PostDetails = () => {
     const [post, setPost] = useState({ userProfile: {} });
+    // const [, setComments] = useState([]);
     const { getPost } = useContext(PostContext);
     const { id } = useParams();
 
     useEffect(() => {
-        getPost(id).then(setPost);
+        getPost(id).then(setPost)
     }, []);
 
 
@@ -25,9 +28,12 @@ export const PostDetails = () => {
                     </p>
                     <p>{post.content}</p>
                     <p>{new Date(post.publishDateTime).toLocaleDateString()}</p>
+                    <Button className="b addComment"><Link className="a" to={`/comment/create/${post.id}`}>Add Comment</Link></Button>
                 </CardBody>
-                <Button className="b"><Link className="a" to={`/comment/${post.id}`}>Comments</Link></Button>
 
+                <div className="">
+                    <CommentList />
+                </div>
             </Card>
         </div>
     );
