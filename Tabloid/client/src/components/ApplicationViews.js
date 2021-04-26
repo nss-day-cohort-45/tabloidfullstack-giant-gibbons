@@ -28,6 +28,7 @@ import DeactivateUserProfile from "./Users/UserDeactivateForm";
 import PostDelete from "./Posts/PostDelete";
 import "./appViews.css"
 
+
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
 
@@ -49,37 +50,37 @@ export default function ApplicationViews() {
 
         <Route path="/post" exact>
           <PostProvider>
-            <PostList />
+            {isLoggedIn ? <PostList /> : <Redirect to="/login" />}
           </PostProvider>
         </Route>
 
         <Route path="/myPosts">
           <PostProvider>
-            <MyPostList />
+            {isLoggedIn ? <MyPostList /> : <Redirect to="/login" />}
           </PostProvider>
         </Route>
 
         <Route path="/post/:id(\d+)" exact>
           <PostProvider>
-            <PostDetails />
+            {isLoggedIn ? <PostDetails /> : <Redirect to="/login" />}
           </PostProvider>
         </Route>
 
         <Route path="/tag" exact>
           <TagProvider>
-            <TagList />
+            {isLoggedIn ? <TagList /> : <Redirect to="/login" />}
           </TagProvider>
         </Route>
 
         <Route path="/tag/create" exact>
           <TagProvider>
-            <TagForm />
+            {isLoggedIn ? <TagForm /> : <Redirect to="/login" />}
           </TagProvider>
         </Route>
 
         <Route path="/tag/edit/:id(\d+)" exact>
           <TagProvider>
-            <TagEdit />
+            {isLoggedIn ? <TagEdit /> : <Redirect to="/login" />}
           </TagProvider>
         </Route>
 
@@ -91,6 +92,7 @@ export default function ApplicationViews() {
 
         <Route exact path="/category">
           <CategoryProvider>
+            {isLoggedIn ? <CategoryList /> : <Redirect to="/login" />}
             <CategoryList />
           </CategoryProvider>
         </Route>
@@ -98,13 +100,13 @@ export default function ApplicationViews() {
 
         <Route path="/userProfiles" exact>
           <UserProfileProvider>
-            <UserProfileList />
+            {isLoggedIn ? <UserProfileList /> : <Redirect to="/login" />}
           </UserProfileProvider>
         </Route>
 
         <Route path="/userProfiles/:id(\d+)" exact>
           <UserProfileProvider>
-            <UserProfileDetails />
+            {isLoggedIn ? <UserProfileDetails /> : <Redirect to="/login" />}
           </UserProfileProvider>
         </Route>
 
@@ -112,14 +114,6 @@ export default function ApplicationViews() {
           <UserProfileProvider>
             <DeactivateUserProfile />
           </UserProfileProvider>
-        </Route>
-
-        <Route path="/post/add" exact>
-          <PostProvider>
-            <CategoryProvider>
-              <PostForm />
-            </CategoryProvider>
-          </PostProvider>
         </Route>
 
         <Route exact path="/category/create">
@@ -158,11 +152,11 @@ export default function ApplicationViews() {
           <CategoryProvider>
 
             <Route path="/post/add" exact>
-              <PostForm />
+              {isLoggedIn ? <PostForm /> : <Redirect to="/login" />}
             </Route>
 
             <Route path="/post/edit/:id(\d+)" exact>
-              <PostForm />
+              {isLoggedIn ? <PostForm /> : <Redirect to="/login" />}
             </Route>
 
             <Route exact path="/post/delete/:id(\d+)">

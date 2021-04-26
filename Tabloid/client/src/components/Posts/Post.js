@@ -7,7 +7,7 @@ export const Post = ({ post }) => {
 
   const user = JSON.parse(sessionStorage.getItem("userProfile"));
 
-  const enableButton = user.id === post.userProfileId;
+  const enableButton = user !== null && user.id === post.userProfileId;
 
   const buttonForUser = () => {
     return (
