@@ -23,9 +23,11 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"
                                         SELECT p.Id as PostId, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId,
-                                        up.Id as UserProfileId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.UserTypeId
+                                        up.Id as UserProfileId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.UserTypeId,
+                                        c.Id as CategoryId, c.Name AS Category
                                        FROM Post p 
                                         LEFT JOIN UserProfile up on p.UserProfileId = up.Id
+                                        LEFT JOIN Category c on p.CategoryId = c.Id
                                         WHERE p.IsApproved = 1
                                         ORDER BY p.PublishDateTime desc";
 
@@ -54,6 +56,11 @@ namespace Tabloid.Repositories
                                 UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
 
                             },
+                            category = new Category()
+                            {
+                                Id = DbUtils.GetInt(reader, "CategoryId"),
+                                Name = DbUtils.GetString(reader, "Category")
+                            }
 
                         });
                     }
@@ -221,20 +228,19 @@ namespace Tabloid.Repositories
                             SET Title = @title,
                                 Content = @content,
                                 ImageLocation = @imageLocation,
-                                CreateDateTime = @createDateTime,
                                 PublishDateTime = @publishDateTime,
                                 IsApproved = @isApproved,
-                                CategoryId = @categoryId,
-                                UserProfileId = @userProfileId";
+                                CategoryId = @categoryId
+                                WHERE Id = @id";
 
+                    DbUtils.AddParameter(cmd, "@id", post.Id);
                     DbUtils.AddParameter(cmd, "@title", post.Title);
                     DbUtils.AddParameter(cmd, "@content", post.Content);
-                    DbUtils.AddParameter(cmd, "@imageLocation", post.ImageLocation);
-                    DbUtils.AddParameter(cmd, "@createDateTime", post.CreateDateTime);
+                    DbUtils.AddParameter(cmd, "@imageLocation", post.ImageLocation);     
                     DbUtils.AddParameter(cmd, "@publishDateTime", post.PublishDateTime);
                     DbUtils.AddParameter(cmd, "@isApproved", post.IsApproved);
                     DbUtils.AddParameter(cmd, "@categoryId", post.CategoryId);
-                    DbUtils.AddParameter(cmd, "@userProfileId", post.UserProfileId);
+                   
 
                     cmd.ExecuteNonQuery();
 
@@ -265,9 +271,11 @@ namespace Tabloid.Repositories
                 {
                     cmd.CommandText = @"
                  SELECT p.Id as PostId, p.Title, p.Content, p.ImageLocation, p.CreateDateTime, p.PublishDateTime, p.IsApproved, p.CategoryId,
-                                        up.Id as UserProfileId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.UserTypeId
+                                        up.Id as UserProfileId, up.DisplayName, up.FirstName, up.LastName, up.Email, up.UserTypeId,
+                                        c.Id as CategoryId, c.[Name] as Category
                 FROM Post p
-                JOIN UserProfile up ON up.Id = p.UserProfileId
+                LEFT JOIN UserProfile up ON up.Id = p.UserProfileId
+                LEFT JOIN Category c on c.Id = p.CategoryId
                 WHERE p.UserProfileId = @userProfileId
             ";
 
@@ -299,6 +307,11 @@ namespace Tabloid.Repositories
                                 Email = DbUtils.GetString(reader, "Email"),
                                 UserTypeId = DbUtils.GetInt(reader, "UserTypeId"),
 
+                            },
+                            category = new Category()
+                            {
+                                Id = DbUtils.GetInt(reader, "CategoryId"),
+                                Name = DbUtils.GetString(reader, "Category")
                             }
                         };
 
@@ -330,9 +343,11 @@ namespace Tabloid.Repositories
                     cmd.CommandText = @"
                                         SELECT u.Id AS UserProfileId, u.FirebaseUserId, u.DisplayName,
 
-		                                        Post.Id AS PostId, Post.Title, Post.Content, Post.CategoryId, Post.CreateDateTime, Post.ImageLocation
+		                                        Post.Id AS PostId, Post.Title, Post.Content, Post.CategoryId, Post.CreateDateTime, Post.ImageLocation,
+                                                c.Id as CategoryId, c.[Name] as Category
                                         FROM UserProfile u
-                                        JOIN Post ON Post.UserProfileId = u.id
+                                        LEFT JOIN Post ON Post.UserProfileId = u.id
+                                        LEFT JOIN Category c on Post.CategoryId = c.id
                                         WHERE u.FirebaseUserId = @firebaseUserId
                                         ORDER BY Post.CreateDateTime DESC";
 
@@ -358,6 +373,11 @@ namespace Tabloid.Repositories
                                 FirebaseUserId = DbUtils.GetString(reader, "FirebaseUserId"),
                                 DisplayName = DbUtils.GetString(reader, "DisplayName")
                             },
+                            category = new Category()
+                            {
+                                Id = DbUtils.GetInt(reader, "CategoryId"),
+                                Name = DbUtils.GetString(reader, "Category")
+                            }
 
                         });
                     }
