@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Card, CardImg, CardBody } from "reactstrap";
+import { Card, CardImg, CardBody, Button } from "reactstrap";
 import { UserProfileContext } from "../../providers/UserProfileProvider";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 
 export const UserProfileDetails = () => {
@@ -28,6 +28,7 @@ export const UserProfileDetails = () => {
                     <p>{userProfile.email}</p>
                     <p>{new Date(userProfile.createDateTime).toLocaleDateString()}</p>
                     <p>{userProfile.userType.name}</p>
+                    <Button className="b"><Link className="a" to={`/userProfile/deactivate/${userProfile.id}`}>Deactivate</Link></Button>
                 </CardBody>
             </Card>
         </div>

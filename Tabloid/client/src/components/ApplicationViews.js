@@ -24,9 +24,8 @@ import UserProfileDetails from "./Users/UserProfileDetails"
 import CommentProvider from "../providers/CommentProvider"
 import CommentList from "./Comment/CommentList"
 import CommentForm from "./Comment/CommentForm"
+import DeactivateUserProfile from "./Users/UserDeactivateForm";
 import PostDelete from "./Posts/PostDelete";
-
-
 
 export default function ApplicationViews() {
   const { isLoggedIn } = useContext(UserProfileContext);
@@ -106,6 +105,20 @@ export default function ApplicationViews() {
           <UserProfileProvider>
             <UserProfileDetails />
           </UserProfileProvider>
+        </Route>
+
+        <Route exact path="/userProfile/deactivate/:userProfileId(\d+)">
+          <UserProfileProvider>
+            <DeactivateUserProfile />
+          </UserProfileProvider>
+        </Route>
+
+        <Route path="/post/add" exact>
+          <PostProvider>
+            <CategoryProvider>
+              <PostForm />
+            </CategoryProvider>
+          </PostProvider>
         </Route>
 
         <Route exact path="/category/create">
