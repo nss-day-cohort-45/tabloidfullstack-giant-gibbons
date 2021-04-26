@@ -26,7 +26,7 @@ export const PostDetails = () => {
                     <p>{post.content}</p>
                     <p>{new Date(post.publishDateTime).toLocaleDateString()}</p>
                 </CardBody>
-                <Button className="b"><Link className="a" to={`/comment/${post.id}`}>Comments</Link></Button>
+                <Button className="b"><Link className="a" to={`/comment/create/${post.id}`}>Comments</Link></Button>
 
             </Card>
         </div>

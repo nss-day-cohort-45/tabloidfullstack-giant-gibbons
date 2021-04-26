@@ -1,18 +1,19 @@
 import React, { useContext, useState } from "react";
 import { CommentContext } from "../../providers/CommentProvider"
-import { useHistory } from 'react-router-dom';
-import { Button, Form, Label, Input } from 'reactstrap'
+import { useHistory, useParams } from 'react-router-dom';
+import { Button, Form, Label, Input } from 'reactstrap';
 
 export const CommentForm = () => {
 
     const { addComment } = useContext(CommentContext)
     const history = useHistory();
+    const postId = parseInt(useParams());
+
 
     const [comment, setComment] = useState({
         "subject": "",
         "content": "",
-        "postId": 0,
-        "userProfileId": 0
+        "postId": 0
     })
 
     const handleClickSaveComment = (event) => {
@@ -21,8 +22,7 @@ export const CommentForm = () => {
         addComment({
             subject: comment.subject,
             content: comment.content,
-            postId: 10000,
-            userProfileId: 10000
+            postId: postId
         })
             .then(() => history.push(`/post`)) //This needs to be fixed
     }

@@ -120,6 +120,25 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </Route>
 
+        <Route exact path="/category/edit/:categoryId(\d+)">
+          <CategoryProvider>
+            <CategoryEditForm />
+          </CategoryProvider>
+        </Route>
+
+        <Route path="/comment/:id(\d+)">
+          <CommentProvider>
+            <PostProvider>
+              <CommentList />
+            </PostProvider>
+          </CommentProvider>
+        </Route>
+
+        <Route exact path="/comment/create/:postId(\d+)">
+          <CommentProvider>
+            <CommentForm />
+          </CommentProvider>
+        </Route>
 
         <PostProvider>
           <CategoryProvider>
@@ -139,25 +158,7 @@ export default function ApplicationViews() {
           </CategoryProvider>
         </PostProvider>
 
-        <Route exact path="/category/edit/:categoryId(\d+)">
-          <CategoryProvider>
-            <CategoryEditForm />
-          </CategoryProvider>
-        </Route>
 
-        <Route path="/comment/:id(\d+)">
-          <CommentProvider>
-            <PostProvider>
-              <CommentList />
-            </PostProvider>
-          </CommentProvider>
-        </Route>
-
-        <Route path="/comment/create/">
-          <CommentProvider>
-            <CommentForm />
-          </CommentProvider>
-        </Route>
 
       </Switch>
     </main>
