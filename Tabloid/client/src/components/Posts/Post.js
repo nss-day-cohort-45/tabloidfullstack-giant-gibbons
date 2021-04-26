@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardImg, CardBody, Button } from "reactstrap";
 import { Link } from "react-router-dom";
+import "./Posts.css";
 
 export const Post = ({ post }) => {
 
