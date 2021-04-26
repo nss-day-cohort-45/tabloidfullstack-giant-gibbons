@@ -7,3 +7,7 @@
 .b {
     margin-right: 1rem;
 }
+
+.c {
+    display: flex;
+}

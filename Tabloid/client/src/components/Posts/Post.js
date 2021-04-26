@@ -42,9 +42,11 @@ export const Post = ({ post }) => {
           </Link>
         </p>
         <p>{post.category.name}</p>
-        <div>{enableButton ? buttonForUser() : null}</div>
-        <div>{enableButton ? deleteForUser() : null}</div>
 
+        <section className="c">
+          <div>{enableButton ? buttonForUser() : null}</div>
+          <div>{enableButton ? deleteForUser() : null}</div>
+        </section>
       </CardBody>
     </Card>
   );
