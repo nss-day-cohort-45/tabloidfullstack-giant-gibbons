@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useState } from "react";
-import { Card, CardImg, CardBody } from "reactstrap";
+import { Card, CardImg, CardBody, Button } from "reactstrap";
 import { PostContext } from "../../providers/PostProvider";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 
 export const PostDetails = () => {
@@ -26,6 +26,8 @@ export const PostDetails = () => {
                     <p>{post.content}</p>
                     <p>{new Date(post.publishDateTime).toLocaleDateString()}</p>
                 </CardBody>
+                <Button className="b"><Link className="a" to={`/comment/${post.id}`}>Comments</Link></Button>
+
             </Card>
         </div>
     );
