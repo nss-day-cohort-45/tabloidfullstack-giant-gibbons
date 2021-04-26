@@ -62,7 +62,9 @@ export default function ApplicationViews() {
 
         <Route path="/post/:id(\d+)" exact>
           <PostProvider>
-            {isLoggedIn ? <PostDetails /> : <Redirect to="/login" />}
+            <CommentProvider>
+              {isLoggedIn ? <PostDetails /> : <Redirect to="/login" />}
+            </CommentProvider>
           </PostProvider>
         </Route>
 

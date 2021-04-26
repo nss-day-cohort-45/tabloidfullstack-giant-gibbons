@@ -13,11 +13,11 @@ export const CommentProvider = (props) => {
       fetch(`/api/comment/${postId}`, {
         method: "GET",
         headers: {
-          Authorization: `Bearer ${token}`,
-        },
+          Authorization: `Bearer ${token}`
+        }
       }).then((res) => res.json())
+        .then(setComments)
     )
-      .then(setComments)
   };
 
   const addComment = (comment) => {
