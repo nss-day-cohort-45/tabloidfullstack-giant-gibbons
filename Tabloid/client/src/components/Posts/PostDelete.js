@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { PostContext } from "../../providers/PostProvider"
 import { useHistory, useParams } from 'react-router-dom';
 import { Button } from 'reactstrap'
+import "./Post.css";
 
 export const PostDelete = () => {
 

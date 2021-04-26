@@ -11,6 +11,7 @@ import {
 import { PostContext } from "../../providers/PostProvider";
 import { CategoryContext } from "../../providers/CategoryProvider";
 import { useHistory, useParams } from "react-router-dom";
+import "./Post.css";
 
 export const PostForm = () => {
 
